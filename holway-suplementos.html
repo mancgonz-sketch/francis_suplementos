@@ -3,240 +3,426 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Suplementos Deportivos · Francis Holway</title>
+<title>Suplementos Deportivos · Gonzalo Manca</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:#0c0c10;color:#e2e2ea;min-height:100vh}
 button{cursor:pointer;font-family:'DM Sans',sans-serif}
+input{font-family:'DM Sans',sans-serif}
 .badge{display:inline-block;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;letter-spacing:0.03em}
-.tag-a{background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3)}
-.tag-b{background:rgba(245,158,11,0.15);color:#f59e0b;border:1px solid rgba(245,158,11,0.3)}
-.tag-c{background:rgba(249,115,22,0.15);color:#f97316;border:1px solid rgba(249,115,22,0.3)}
-.tag-d{background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.3)}
+.ta{background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3)}
+.tb{background:rgba(245,158,11,0.15);color:#f59e0b;border:1px solid rgba(245,158,11,0.3)}
+.tc{background:rgba(249,115,22,0.15);color:#f97316;border:1px solid rgba(249,115,22,0.3)}
+.td{background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.3)}
 .row{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer;border-radius:8px;transition:background 0.15s}
 .row:hover{background:rgba(255,255,255,0.04)}
-.filter-btn{padding:6px 12px;font-size:12px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:#888;font-weight:600;transition:all 0.15s;cursor:pointer}
-.filter-btn:hover{border-color:rgba(255,255,255,0.25);color:#ccc}
-.active-all{background:#6366f1!important;color:#fff!important;border-color:#6366f1!important}
-.active-a{background:#22c55e!important;color:#000!important;border-color:#22c55e!important}
-.active-b{background:#f59e0b!important;color:#000!important;border-color:#f59e0b!important}
-.active-c{background:#f97316!important;color:#000!important;border-color:#f97316!important}
-.active-d{background:#ef4444!important;color:#fff!important;border-color:#ef4444!important}
-.view-btn{padding:5px 14px;font-size:13px;border:none;border-radius:6px;background:transparent;color:#666;font-weight:500;transition:all 0.15s;cursor:pointer}
-.view-btn.active{background:rgba(255,255,255,0.1);color:#fff}
+.fbtn{padding:5px 11px;font-size:12px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:#888;font-weight:600;transition:all 0.15s;cursor:pointer}
+.fbtn:hover{color:#ccc}
+.fall{background:#6366f1!important;color:#fff!important;border-color:#6366f1!important}
+.fa{background:#22c55e!important;color:#000!important;border-color:#22c55e!important}
+.fb{background:#f59e0b!important;color:#000!important;border-color:#f59e0b!important}
+.fc{background:#f97316!important;color:#000!important;border-color:#f97316!important}
+.fd{background:#ef4444!important;color:#fff!important;border-color:#ef4444!important}
+.vbtn{padding:5px 12px;font-size:13px;border:none;border-radius:6px;background:transparent;color:#666;cursor:pointer;font-weight:400;transition:all 0.15s}
+.vbtn.va{background:rgba(255,255,255,0.1);color:#fff;font-weight:500}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:flex;align-items:flex-end;justify-content:center;z-index:100;backdrop-filter:blur(6px)}
+.panel{background:#14141c;border-radius:20px 20px 0 0;width:100%;max-width:680px;max-height:88vh;overflow-y:auto;padding:24px 24px 40px;position:relative}
+.reg-overlay{position:fixed;inset:0;background:#0c0c10;display:flex;align-items:center;justify-content:center;z-index:200;padding:1.5rem}
+input[type=text]{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:0.7rem 1rem;color:#e2e2ea;font-size:0.9rem;outline:none;transition:border 0.2s}
+input[type=text]:focus{border-color:#6366f1}
 table{width:100%;border-collapse:collapse}
 th{text-align:left;padding:8px 12px;font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.07em;border-bottom:1px solid rgba(255,255,255,0.07);font-weight:600}
 td{padding:10px 12px;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.04)}
+tr{cursor:pointer}
 tr:hover td{background:rgba(255,255,255,0.03)}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:flex;align-items:flex-end;justify-content:center;z-index:100;backdrop-filter:blur(6px)}
-.panel{background:#14141c;border-radius:20px 20px 0 0;width:100%;max-width:680px;max-height:88vh;overflow-y:auto;padding:24px 24px 40px}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:4px}
 @keyframes shimmer{0%,100%{opacity:0.3}50%{opacity:0.7}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
 
-<div style="max-width:900px;margin:0 auto;padding:0 1rem 4rem">
-
-  <!-- HEADER -->
-  <div id="header" style="position:sticky;top:0;background:#0c0c10;border-bottom:1px solid rgba(255,255,255,0.06);padding:14px 0 10px;z-index:10">
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.08em;background:linear-gradient(135deg,#fff,#777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:2px">Suplementos Deportivos</div>
-    <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Clasificación AIS · Francis Holway · Basado en evidencia científica</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-      <div style="display:flex;background:rgba(255,255,255,0.05);border-radius:8px;padding:3px;gap:2px;border:1px solid rgba(255,255,255,0.07)">
-        <button class="view-btn active" onclick="setView('list',this)">≡ Lista</button>
-        <button class="view-btn" onclick="setView('table',this)">⊞ Tabla</button>
+<div id="reg-screen" class="reg-overlay">
+  <div style="width:100%;max-width:400px;animation:fadeIn 0.4s ease">
+    <div style="text-align:center;margin-bottom:2rem">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.08em;background:linear-gradient(135deg,#fff,#777);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Suplementos Deportivos</div>
+      <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.05em;margin-top:4px">Clasificación AIS · Francis Holway · Basado en evidencia científica</div>
+    </div>
+    <div style="background:#14141c;border:1px solid rgba(255,255,255,0.08);border-top:3px solid #6366f1;border-radius:18px;padding:1.8rem">
+      <div style="font-size:11px;color:#6366f1;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;margin-bottom:1.2rem">Registrate para acceder</div>
+      <div style="margin-bottom:12px">
+        <label style="font-size:11px;color:#666;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:6px">Nombre</label>
+        <input type="text" id="inp-nombre" placeholder="Ej: Juan">
       </div>
-      <div style="display:flex;gap:4px;flex-wrap:wrap" id="filters">
-        <button class="filter-btn active-all" onclick="setFilter('ALL',this)">Todos</button>
-        <button class="filter-btn" onclick="setFilter('A',this)">A · Aprobados</button>
-        <button class="filter-btn" onclick="setFilter('B',this)">B · En evaluación</button>
-        <button class="filter-btn" onclick="setFilter('C',this)">C · Sin efecto</button>
-        <button class="filter-btn" onclick="setFilter('D',this)">D · No usar</button>
+      <div style="margin-bottom:12px">
+        <label style="font-size:11px;color:#666;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:6px">Apellido</label>
+        <input type="text" id="inp-apellido" placeholder="Ej: Pérez">
+      </div>
+      <div style="margin-bottom:16px">
+        <label style="font-size:11px;color:#666;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:6px">Ciudad</label>
+        <input type="text" id="inp-ciudad" placeholder="Ej: Buenos Aires">
+      </div>
+      <div id="reg-error" style="display:none;font-size:12px;color:#ef4444;background:rgba(239,68,68,0.08);border-radius:8px;padding:8px 12px;margin-bottom:12px"></div>
+      <button id="btn-register" onclick="doRegister()" style="width:100%;background:#6366f1;color:#fff;border:none;border-radius:10px;padding:0.85rem;font-size:0.9rem;font-weight:700;cursor:pointer;letter-spacing:0.04em;transition:all 0.2s">
+        Ingresar →
+      </button>
+      <div style="font-size:11px;color:#444;text-align:center;margin-top:12px;line-height:1.5">Tus datos son solo visibles para el administrador de la app.</div>
+    </div>
+  </div>
+</div>
+
+<div id="main-app" style="display:none;padding-bottom:5rem">
+
+  <div style="background:linear-gradient(180deg,#13131a 0%,#0c0c10 100%);border-bottom:1px solid rgba(255,255,255,0.06);padding:1.2rem 1.2rem 0;position:sticky;top:0;z-index:10;backdrop-filter:blur(12px)">
+    <div style="max-width:900px;margin:0 auto">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem">
+        <div>
+          <h1 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:0.08em;background:linear-gradient(135deg,#fff,#777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;line-height:1">Suplementos Deportivos</h1>
+          <p style="font-size:11px;color:#555;letter-spacing:0.06em;text-transform:uppercase;margin:4px 0 10px">Clasificación AIS · Francis Holway · Actualizado Mayo 2026</p>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-shrink:0;margin-top:4px">
+          <button onclick="openStats()" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:5px 10px;color:#888;font-size:12px;display:flex;align-items:center;gap:5px">
+            👥 <span id="visit-count">...</span>
+          </button>
+          <button onclick="openLegal()" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:5px 10px;color:#888;font-size:12px">ⓘ</button>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,0.06)">
+        <button class="tab-btn" onclick="setTab('supp',this)" style="background:transparent;border:none;color:#fff;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;border-bottom:2px solid #6366f1;transition:all 0.15s">📋 Suplementos</button>
+        <button class="tab-btn" onclick="setTab('news',this)" style="background:transparent;border:none;color:#555;padding:8px 16px;font-size:13px;font-weight:400;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s">🆕 Novedades <span style="background:#6366f1;color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;margin-left:4px">8</span></button>
       </div>
     </div>
   </div>
 
-  <div id="content" style="margin-top:12px"></div>
+  <div style="max-width:900px;margin:0 auto;padding:1.2rem 1rem 0">
+
+    <div id="tab-supp">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:1rem">
+        <div style="display:flex;background:rgba(255,255,255,0.05);border-radius:8px;padding:3px;gap:2px;border:1px solid rgba(255,255,255,0.07)">
+          <button class="vbtn va" onclick="setView('table',this)">⊞ Tabla</button>
+          <button class="vbtn" onclick="setView('list',this)">≡ Lista</button>
+        </div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap">
+          <button class="fbtn fall" onclick="setFilter('ALL',this)">Todos</button>
+          <button class="fbtn" onclick="setFilter('A',this)">A · Aprobados</button>
+          <button class="fbtn" onclick="setFilter('B',this)">B · En evaluación</button>
+          <button class="fbtn" onclick="setFilter('C',this)">C · Sin efecto</button>
+          <button class="fbtn" onclick="setFilter('D',this)">D · No usar</button>
+        </div>
+      </div>
+      <div id="supp-content"></div>
+    </div>
+
+    <div id="tab-news" style="display:none"></div>
+
+  </div>
 </div>
 
-<!-- MODAL -->
-<div class="overlay" id="overlay" style="display:none" onclick="if(event.target===this)closeModal()">
+<div id="overlay" class="overlay" style="display:none" onclick="if(event.target===this)closePanel()">
   <div class="panel" id="panel"></div>
 </div>
 
+<div id="stats-overlay" class="overlay" style="display:none" onclick="if(event.target===this)closeStats()">
+  <div class="panel" id="stats-panel" style="border-top:3px solid #6366f1;max-height:80vh"></div>
+</div>
+
+<div id="legal-overlay" class="overlay" style="display:none" onclick="if(event.target===this)closeLegal()">
+  <div class="panel" style="border-top:3px solid #6366f1;max-height:70vh">
+    <button onclick="closeLegal()" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.07);border:none;color:#888;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:14px">✕</button>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.07em;color:#6366f1;margin-bottom:4px">Aviso Legal</div>
+    <div style="font-size:12px;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1.2rem">Información importante sobre esta aplicación</div>
+    <div style="font-size:13px;line-height:1.7;color:#888">
+      <p style="margin-bottom:12px">Esta aplicación es una herramienta de consulta informativa desarrollada con fines educativos. El contenido presentado es una síntesis de publicaciones científicas de acceso público (PubMed, AIS Framework, COI) y del curso de nutrición deportiva de Francis Holway, organizada para facilitar la consulta de profesionales y personas interesadas en la suplementación deportiva.</p>
+      <p style="margin-bottom:12px">La información aquí contenida <strong style="color:#e2e2ea">no constituye asesoramiento médico, nutricional ni terapéutico</strong>. No reemplaza la consulta con un profesional de la salud habilitado. El autor no se responsabiliza por el uso que cada persona haga de esta información.</p>
+      <p style="margin-bottom:16px">La clasificación ABCD utilizada corresponde al Marco de Suplementos del Instituto Australiano del Deporte (AIS), actualizado periódicamente según la evidencia científica disponible.</p>
+      <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:12px;font-size:12px;color:#555">
+        <div style="color:#e2e2ea;font-weight:600;margin-bottom:4px">Creado por Gonzalo Manca</div>
+        <div>Deportista y entusiasta de la ciencia aplicada al deporte</div>
+        <div>Neuquén, Argentina</div>
+        <div style="margin-top:4px"><a href="mailto:gonmanca@yahoo.com.ar" style="color:#6366f1;text-decoration:none">gonmanca@yahoo.com.ar</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="position:fixed;bottom:0;left:0;right:0;background:#0c0c10;border-top:1px solid rgba(255,255,255,0.06);padding:10px 1.2rem;z-index:9;text-align:center">
+  <div style="font-size:11px;color:#444">Creado por <span style="color:#666">Gonzalo Manca</span> · <a href="mailto:gonmanca@yahoo.com.ar" style="color:#555;text-decoration:none">gonmanca@yahoo.com.ar</a> · Neuquén, Argentina</div>
+  <div style="font-size:10px;color:#333;margin-top:2px">Herramienta informativa basada en evidencia científica · No constituye asesoramiento médico</div>
+</div>
+
 <script>
-const GROUPS={
-  A:{label:"Aprobados",color:"#22c55e",bg:"rgba(34,197,94,0.08)",border:"rgba(34,197,94,0.25)",cls:"tag-a"},
-  B:{label:"En evaluación",color:"#f59e0b",bg:"rgba(245,158,11,0.08)",border:"rgba(245,158,11,0.25)",cls:"tag-b"},
-  C:{label:"Sin efecto",color:"#f97316",bg:"rgba(249,115,22,0.08)",border:"rgba(249,115,22,0.25)",cls:"tag-c"},
-  D:{label:"No usar",color:"#ef4444",bg:"rgba(239,68,68,0.08)",border:"rgba(239,68,68,0.25)",cls:"tag-d"},
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbxr6pBd9TX_MG2lJ_0tk6hhaUST7vrq2jrAzw_GKAz2Zz1v84a2e9qEkhRdN3m-R3jMUA/exec";
+
+const GROUPS = {
+  A:{l:"Aprobados",c:"#22c55e",bg:"rgba(34,197,94,0.08)",br:"rgba(34,197,94,0.25)",cl:"ta"},
+  B:{l:"En evaluación",c:"#f59e0b",bg:"rgba(245,158,11,0.08)",br:"rgba(245,158,11,0.25)",cl:"tb"},
+  C:{l:"Sin efecto",c:"#f97316",bg:"rgba(249,115,22,0.08)",br:"rgba(249,115,22,0.25)",cl:"tc"},
+  D:{l:"No usar",c:"#ef4444",bg:"rgba(239,68,68,0.08)",br:"rgba(239,68,68,0.25)",cl:"td"},
 };
 
-const S=[
-  {id:1,g:"A",name:"Bebidas deportivas y geles",verdict:"✅ Usar en deportes >60 min.",science:"CHO de rápida absorción + electrolitos. Consenso COI 2018: 30-60 g CHO/h mejoran rendimiento en eventos prolongados. El sodio facilita reabsorción y estimula la sed.",dose:"30–60 g CHO/h + 500–700 mg sodio/L"},
-  {id:2,g:"A",name:"Proteína de suero (Whey)",verdict:"✅ Efectiva para hipertrofia y recuperación.",science:"Rica en leucina (~11%), aminoácido clave para activar mTOR y síntesis proteica muscular. Meta-análisis BJSM 2018 (n=1800+): aumenta masa y fuerza con entrenamiento.",dose:"20–40 g post-entrenamiento; 1.6–2.2 g/kg/día total"},
-  {id:3,g:"A",name:"Cafeína",verdict:"✅ Uno de los ergogénicos más efectivos.",science:"Antagonista de receptores de adenosina: reduce percepción de esfuerzo y fatiga. Grgic et al. 2020 (300+ estudios): mejora resistencia aeróbica +2-4%, potencia, velocidad y fuerza.",dose:"3–6 mg/kg, 45-60 min antes del ejercicio"},
-  {id:4,g:"A",name:"Creatina monohidrato",verdict:"✅ Mayor evidencia para potencia, fuerza e hipertrofia.",science:"+500 ensayos clínicos. Aumenta reservas de fosfocreatina muscular mejorando resíntesis de ATP. Meta-análisis JISSN y BJSM: +5-15% en fuerza y potencia anaeróbica.",dose:"3–5 g/día mantenimiento. Carga: 20 g/día x 5-7 días (opcional)"},
-  {id:5,g:"A",name:"Bicarbonato de sodio",verdict:"✅ Efectivo en esfuerzos de alta intensidad.",science:"Tamponador extracelular de H⁺. Retrasa acidosis muscular en esfuerzos de 1-10 min. Carr et al.: mejora rendimiento en ~2% en pruebas de alta intensidad.",dose:"0.2–0.3 g/kg, 60-90 min antes, con abundante agua"},
-  {id:6,g:"A",name:"Vitamina D",verdict:"✅ Suplementar si hay deficiencia (muy frecuente).",science:"Alta prevalencia de déficit en atletas de interiores y latitudes altas. Roles en función muscular, inmunidad y salud ósea. Farrokhyar 2015: correlación con VO₂max.",dose:"1.000–4.000 UI/día según niveles séricos basales"},
-  {id:7,g:"A",name:"Probióticos",verdict:"✅ Reducen enfermedades en temporadas de carga alta.",science:"Huang et al. 2021: reducen incidencia y duración de ITRS en atletas. Mejoran integridad intestinal bajo estrés físico. Efecto dependiente de cepa y dosis.",dose:"≥10⁹ UFC/día de cepa específica (ej. L. rhamnosus GG)"},
-  {id:8,g:"A",name:"Calcio, Hierro, Zinc",verdict:"✅ Solo si hay deficiencia confirmada por análisis.",science:"Alta prevalencia de déficit en atletas. Deficiencia de hierro deteriora VO₂max. Zinc afecta inmunidad. Sin déficit verificado, no hay beneficio ergogénico.",dose:"Según análisis. Hierro: 18–45 mg/día. Zinc: 8–11 mg/día"},
-  {id:9,g:"A",name:"Multivitamínico",verdict:"✅ Útil como red de seguridad en dietas restrictivas.",science:"Beneficioso en atletas en déficit calórico (Woolf & Manore 2006). Sin efecto ergogénico en atletas bien nutridos con dieta variada.",dose:"1 comprimido/día con dosis diaria recomendada. No megadosis."},
-  {id:10,g:"A",name:"Barras deportivas",verdict:"✅ Práctica, no mágica. Ventaja logística.",science:"CHO + proteína con composición controlada. AIS las incluye como 'sports food' Grupo A por practicidad y efectividad.",dose:"1 barra (30–50 g CHO) 1h antes o inmediatamente post-entreno"},
-  {id:11,g:"A",name:"Comidas líquidas",verdict:"✅ Útiles post-ejercicio, viajes y apetito suprimido.",science:"COI las clasifica como alimentos deportivos Grupo A. Facilitan ventana anabólica post-entrenamiento.",dose:"20–40 g proteína + CHO según demanda energética"},
-  {id:12,g:"A",name:"Glicerol",verdict:"⚠️ Útil en calor extremo. Legal desde 2018.",science:"Hiperhidratante. +600-700 mL retención de agua. Removido de lista WADA en 2018. AIS evidencia moderada-alta.",dose:"1 g/kg + 26 mL/kg de líquido, 60-90 min antes"},
-  {id:13,g:"B",name:"Beta-alanina",verdict:"⚠️ Efectiva para esfuerzos de 1-4 min.",science:"Precursor de carnosina muscular (tampón intracelular H⁺). Hobson et al.: +2.85% en ejercicios de 60–240 s. El COI la reconoce con evidencia sólida (AIS la tiene en B).",dose:"3.2–6.4 g/día en dosis divididas durante ≥4 semanas"},
-  {id:14,g:"B",name:"Nitratos (remolacha/beetroot)",verdict:"⚠️ Más efectivo en atletas recreativos.",science:"Convierte a óxido nítrico (NO), mejora eficiencia mitocondrial. Jones 2018: menor efecto en atletas de élite altamente entrenados.",dose:"~400 mg nitratos (≈500 mL jugo de remolacha), 2-3 h antes"},
-  {id:15,g:"B",name:"Aceites de pescado (Omega-3)",verdict:"⚠️ Prometedor para recuperación y salud general.",science:"Smith et al. 2011: 4 g EPA+DHA/día aumenta síntesis proteica muscular. Propiedades antiinflamatorias documentadas.",dose:"2–4 g/día EPA+DHA combinados"},
-  {id:16,g:"B",name:"Colágeno",verdict:"⚠️ Útil para tendones y ligamentos. No para músculo.",science:"Shaw 2017: 15 g hidrolizado + vitamina C antes de ejercicio de impacto aumenta marcadores de síntesis de colágeno.",dose:"15 g hidrolizado + vitamina C, 60 min antes del ejercicio"},
-  {id:17,g:"B",name:"Polifenoles (frutas)",verdict:"⚠️ Útiles como alimento funcional para recuperación.",science:"Jugo de cereza ácida (Montmorency): reduce daño muscular post-ejercicio. Resultados reproducibles.",dose:"Jugo de cereza: 30 mL concentrado 2x/día"},
-  {id:18,g:"B",name:"Cúrcuma (curcumina)",verdict:"⚠️ Potencial antiinflamatorio limitado por biodisponibilidad.",science:"Inhibe NF-κB y COX-2. Biodisponibilidad oral extremadamente baja (<1%). Formulaciones con piperina mejoran absorción.",dose:"500-1000 mg/día de curcumina con piperina (BioPerine)"},
-  {id:19,g:"B",name:"HMB (β-hidroxi β-metilbutirato)",verdict:"⚠️ Posible beneficio en personas no entrenadas.",science:"Metabolito de leucina con posible efecto anticatabólico. Evidencia mixta. Sin ventaja en atletas ya entrenados.",dose:"3 g/día si se decide usar"},
-  {id:20,g:"B",name:"Carnitina",verdict:"⚠️ Sin evidencia consistente en deportistas sanos.",science:"No aumenta niveles musculares significativamente con suplementación oral. Revisiones sistemáticas no muestran mejoras en rendimiento.",dose:"Sin protocolo establecido por evidencia insuficiente"},
-  {id:21,g:"B",name:"Antioxidantes C y E (dosis altas)",verdict:"⚠️ Contraindicados en uso crónico durante entrenamiento.",science:"Paradoja: las ROS son señales necesarias para adaptaciones. Merry & Ristow 2016: bloquean biogénesis mitocondrial.",dose:"Solo como corrección de deficiencia. Evitar megadosis crónicas."},
-  {id:22,g:"B",name:"Cetonas exógenas",verdict:"⚠️ Sin evidencia suficiente. Alto costo.",science:"Evans et al. 2022: no mejoras consistentes en resistencia. En algunos estudios perjudican uso de glucógeno.",dose:"Sin protocolo establecido por evidencia inconsistente"},
-  {id:23,g:"B",name:"Jugo de encurtidos (Pickle juice)",verdict:"⚠️ Evidencia emergente solo para calambres.",science:"Miller et al. 2010: reduce calambres inducidos en ~45%. Efecto neurológico (muy rápido para ser osmótico).",dose:"~80 mL ante calambres agudos"},
-  {id:24,g:"B",name:"NAC (N-Acetil Cisteína)",verdict:"⚠️ No recomendado en uso crónico en atletas.",science:"Precursor del glutatión. Puede interferir con adaptaciones al entrenamiento si se usa crónicamente.",dose:"600-1800 mg/día solo en períodos específicos"},
-  {id:25,g:"B",name:"Mentol (estimulante del sabor)",verdict:"⚠️ Útil como estrategia sensorial en calor.",science:"Activa receptores TRPM8 en boca sin reducir temperatura central. Mejora percepción térmica y tolerancia.",dose:"Enjuague bucal con solución de mentol 0.01%"},
-  {id:26,g:"B",name:"Pre/probióticos",verdict:"⚠️ Prometedores para salud intestinal.",science:"AIS Grupo B con investigación activa. Evidencia creciente eje intestino-rendimiento-inmunidad. Sin efecto ergogénico directo demostrado.",dose:"Inulina: 5-10 g/día. Probióticos: ver ítem específico."},
-  {id:27,g:"C",name:"BCAA (Aminoácidos ramificados)",verdict:"❌ Innecesarios con suficiente proteína de calidad.",science:"Wolfe 2017; Morton et al.: BCAA solos son inferiores a proteína completa para estimular síntesis proteica. Mercadotecnia sobre ciencia.",dose:"Mejor invertir en proteína completa (whey, huevo, carne)"},
-  {id:28,g:"C",name:"Cromo",verdict:"❌ Sin beneficio demostrado en atletas sanos.",science:"Althuis et al. 2002 (20+ ECA): sin efectos significativos en glucosa, masa muscular ni composición corporal.",dose:"No recomendado"},
-  {id:29,g:"C",name:"Coenzima Q10",verdict:"❌ Sin efecto ergogénico en deportistas sanos.",science:"CoQ10 muscular no aumenta significativamente con suplementación oral. Meta-análisis no muestran mejoras en VO₂max.",dose:"No recomendado para rendimiento deportivo"},
-  {id:30,g:"C",name:"Ginseng",verdict:"❌ Evidencia científica insuficiente.",science:"Bahrke & Morgan 2000: estudios de baja calidad metodológica con resultados contradictorios. Sin mejora aeróbica demostrada.",dose:"No recomendado"},
-  {id:31,g:"C",name:"Glucosamina",verdict:"❌ Sin beneficio preventivo en articulaciones sanas.",science:"GAIT trial (NEJM, 2006, n>1600): sin beneficio significativo vs placebo en personas sin artritis severa.",dose:"Solo en artrosis ya diagnosticada: 1500 mg/día"},
-  {id:32,g:"C",name:"Aceite MCT",verdict:"❌ No mejora rendimiento. Problemas GI en dosis necesarias.",science:"Van Zyl et al.: no mejoran rendimiento de resistencia. En dosis para tener efecto causan malestar gastrointestinal severo.",dose:"No recomendado como ergogénico"},
-  {id:33,g:"C",name:"Inosina",verdict:"❌ Sin efecto. Potencialmente perjudicial en dosis altas.",science:"Williams et al. 1990: sin mejoras en VO₂max ni rendimiento en ciclistas. Dosis altas aumentan ácido úrico (riesgo de gota).",dose:"No recomendado"},
-  {id:34,g:"C",name:"Magnesio",verdict:"⚠️ Sin déficit verificado: no hay beneficio ergogénico.",science:"Esencial para >300 reacciones enzimáticas. La deficiencia sí deteriora el rendimiento, pero muchos atletas tienen déficit subclínico sin saberlo.",dose:"Solo si hay déficit confirmado: 300-400 mg/día"},
-  {id:35,g:"C",name:"Ácido alfa-lipoico",verdict:"❌ Sin beneficio en deportistas sanos.",science:"AIS Grupo C. Sin evidencia de mejora en rendimiento deportivo en personas sanas.",dose:"No recomendado como ergogénico"},
-  {id:36,g:"C",name:"Vitamina E (dosis altas)",verdict:"❌ Interfiere con adaptaciones al ejercicio.",science:"Ristow et al. 2009 (PNAS): suplementación C+E previene mejoras en sensibilidad a la insulina inducidas por ejercicio.",dose:"Solo desde la dieta (aceites, frutos secos). No suplementar."},
-  {id:37,g:"C",name:"Fosfatos",verdict:"❌ Evidencia inconsistente.",science:"Estudios modernos con mejor metodología no replican consistentemente mejoras históricas en VO₂max.",dose:"No recomendado"},
-  {id:38,g:"C",name:"Tirosina",verdict:"❌ Sin beneficio ergogénico en condiciones normales.",science:"Posible efecto cognitivo en privación de sueño o estrés extremo. Sin mejoras consistentes en rendimiento físico.",dose:"No recomendado para rendimiento deportivo estándar"},
-  {id:39,g:"D",name:"Efedrina",verdict:"🚫 PROHIBIDA. Extremadamente peligrosa.",science:"150+ muertes documentadas en EE.UU. Hipertensión, arritmias, infartos, ACV. Prohibida FDA 2004 y WADA.",dose:"PROHIBIDA – No usar bajo ninguna circunstancia"},
-  {id:40,g:"D",name:"Sibutramina",verdict:"🚫 Retirada del mercado. Causa infartos y ACV.",science:"Estudio SCOUT (NEJM): aumenta significativamente riesgo cardiovascular. Frecuente como adulterante ilegal en suplementos.",dose:"PROHIBIDA"},
-  {id:41,g:"D",name:"SARMs (Ostarine, Ligandrol, Andarine)",verdict:"🚫 Ilegales para uso humano. PROHIBIDOS WADA.",science:"No aprobados por ninguna agencia regulatoria. Hepatotoxicidad, supresión HPG, riesgo cardiovascular. Frecuentes en suplementos comerciales.",dose:"PROHIBIDOS"},
-  {id:42,g:"D",name:"GHRP-1 y 2 / Péptidos de GH",verdict:"🚫 PROHIBIDOS WADA. Riesgos graves de salud.",science:"Retención de líquidos, resistencia a insulina, síndrome del túnel carpiano. No aprobados para uso en seres humanos sanos.",dose:"PROHIBIDOS"},
-  {id:43,g:"D",name:"DHEA",verdict:"🚫 PROHIBIDA WADA. Riesgo real de positivo.",science:"Conversión a testosterona mínima e inconsistente en adultos jóvenes. Prohibida por WADA. Riesgo de positivo en doping.",dose:"PROHIBIDA en deporte competitivo"},
-  {id:44,g:"D",name:"Androstenediona",verdict:"🚫 PROHIBIDA WADA. No efectiva.",science:"King et al. (JAMA, 1999): NO aumenta testosterona pero SÍ aumenta estradiol (feminización). Prohibida por WADA.",dose:"PROHIBIDA"},
-  {id:45,g:"D",name:"Maca (Lepidium meyenii)",verdict:"❌ Sin evidencia de beneficio. Marketing puro.",science:"Lee et al. 2016: NO mejora testosterona, NO mejora rendimiento físico. El AIS la ubica en Grupo D.",dose:"No recomendada"},
-  {id:46,g:"D",name:"Higenamina",verdict:"🚫 PROHIBIDA WADA desde 2017.",science:"Frecuente en pre-workouts como ingrediente 'natural'. Múltiples atletas suspendidos por positivos inadvertidos.",dose:"PROHIBIDA"},
-  {id:47,g:"D",name:"Sinefrina",verdict:"🚫 PROHIBIDA WADA. Riesgo cardiovascular.",science:"Alcaloide de naranja amarga. Riesgo cardiovascular especialmente con cafeína. Común en quemadores de grasa.",dose:"PROHIBIDA en deporte competitivo"},
-  {id:48,g:"D",name:"Estricnina",verdict:"🚫 VENENO. Dosis letal ~1-2 mg/kg.",science:"Antagonista de receptores de glicina. Históricamente usada en 'tónicos' deportivos. Thomas Hicks en maratón olímpica 1904.",dose:"PROHIBIDA. TÓXICA."},
+const NEWS = [
+  {date:"23 Mayo 2026",tag:"ACTUALIZACIÓN",tc:"#22c55e",title:"Creatina: nuevas aplicaciones en mujeres y adultos mayores",supp:"Creatina monohidrato · Grupo A",body:"Una revisión sistemática y metaanálisis de mayo de 2026 analiza los efectos del monohidrato de creatina en mujeres posmenopáusicas sobre masa magra, fuerza y densidad ósea. Mejora la fuerza muscular cuando el entrenamiento dura al menos 24 semanas. No aumenta la densidad mineral ósea directamente, pero sí mejora la geometría ósea (área, grosor cortical, sección transversal), indicadores clave de resistencia mecánica. También hay datos prometedores en diabetes tipo 2: 5 g/día por 12 semanas junto a ejercicio produce mayores reducciones de glucemia y HbA1c. La creatina ya no es solo para atletas de potencia — es una herramienta de salud para el envejecimiento activo.",source:"PubMed · francisholway.online · Fisiología del Ejercicio (López Chicharro), Mayo 2026"},
+  {date:"23 Mayo 2026",tag:"ACTUALIZACIÓN",tc:"#22c55e",title:"Cafeína: la genética explica por qué no funciona igual en todos",supp:"Cafeína · Grupo A",body:"El gen CYP1A2 regula el 95% del metabolismo de la cafeína. El polimorfismo -163A>C determina si una persona es metabolizadora rápida (AA) o lenta (AC/CC). En un estudio con 101 ciclistas, 4 mg/kg de cafeína mejoró el rendimiento un 6.8% en metabolizadores rápidos (AA), pero lo empeoró un 13.7% en metabolizadores lentos (CC). Esto explica por qué algunos atletas dicen que la cafeína no les sirve o los pone ansiosos. Las pruebas de genotipado de CYP1A2 ya están disponibles comercialmente.",source:"Universidad de Toronto · Fisiología del Ejercicio · GSSI Latam"},
+  {date:"23 Mayo 2026",tag:"ACTUALIZACIÓN",tc:"#f59e0b",title:"Colágeno: evidencia sólida para tendones, cero para músculo",supp:"Colágeno · Grupo B",body:"Una revisión de 2025 aclara que el colágeno hidrolizado no aumenta la síntesis aguda de proteínas del tejido conectivo en fibroblastos. Sin embargo, estudios de mayor duración muestran mejoras funcionales en tendones bajo carga mecánica. En jugadoras de élite de fútbol, 30 g de colágeno hidrolizado + vitamina C tres veces por semana aumentó la rigidez del tendón rotuliano más que el placebo. Un metaanálisis de 113 ensayos clínicos (~8.000 participantes) confirma: no hay evidencia de que incremente masa muscular ni prevenga lesiones en general.",source:"Nutrición Colectiva 2025 · Anglia Ruskin University · Infobae Salud, Mayo 2026"},
+  {date:"23 Mayo 2026",tag:"NOTA CIENTÍFICA",tc:"#6366f1",title:"La disponibilidad energética como regulador neurocognitivo del rendimiento",supp:"Tema transversal",body:"Una revisión narrativa de abril de 2026 integra mecanismos metabólicos, perceptivos y de toma de decisiones en el rendimiento de resistencia. La disponibilidad energética no solo afecta la fisiología — también regula la función cognitiva, la percepción de esfuerzo y la toma de decisiones bajo fatiga. Implicancia directa en la nutrición periodizada: no se trata solo de cuántas calorías se consumen, sino de cuándo y cómo están disponibles para el cerebro durante el esfuerzo.",source:"PubMed · francisholway.online, Abril 2026"},
+  {date:"23 Mayo 2026",tag:"NOTA CIENTÍFICA",tc:"#6366f1",title:"Creatina a largo plazo: sin aumento de efectos secundarios",supp:"Creatina monohidrato · Grupo A",body:"Un análisis de dosis-respuesta de abril de 2026 concluye que la dosis y la duración de la suplementación con monohidrato de creatina no están asociadas con aumento de efectos secundarios vs placebo. Esto refuerza el perfil de seguridad incluso en protocolos de carga (20 g/día por 5-7 días) y uso crónico. El miedo popular a que la creatina dañe los riñones sigue sin sustento científico en personas sanas.",source:"PubMed · francisholway.online, Abril 2026"},
+  {date:"23 Mayo 2026",tag:"NOTA CIENTÍFICA",tc:"#6366f1",title:"Alginato de algas: nuevo ingrediente en el radar deportivo",supp:"Emergente · Sin clasificación AIS actual",body:"Un estudio de abril de 2026 analiza los hidrogeles de polisacáridos de alginato de origen vegetal y sus implicancias para el metabolismo de carbohidratos y la integridad gastrointestinal durante el ejercicio. El alginato forma un gel viscoso en el estómago que puede modificar la velocidad de absorción de glucosa, potencialmente útil para controlar picos glucémicos en deportes de resistencia. Aún en fase de investigación, sin clasificación AIS. Uno para seguir de cerca.",source:"PubMed · francisholway.online, Abril 2026"},
+  {date:"23 Mayo 2026",tag:"ALERTA",tc:"#ef4444",title:"Pre-workouts multi-ingrediente: el mayor riesgo invisible del mercado",supp:"Grupo D (riesgo de contaminación)",body:"El AIS reitera su advertencia sobre suplementos multi-ingrediente. Los 'proprietary blends' no declaran dosis individuales, pueden contener higenamina, sinefrina u otras sustancias prohibidas WADA sin declararlas. Múltiples atletas han sido sancionados por positivos en doping provenientes de suplementos que creían legales. Recomendación del AIS: siempre preferir ingredientes individuales certificados (Informed Sport, HASTA) sobre combinaciones.",source:"AIS Supplement Framework 2025 · Sport Integrity Australia"},
+  {date:"23 Mayo 2026",tag:"NOTA CIENTÍFICA",tc:"#6366f1",title:"Nutrición deportiva en hispanoparlantes: barreras para la práctica basada en evidencia",supp:"Contexto educativo",body:"Una investigación de abril de 2026 señala que el idioma y la formación insuficiente son barreras significativas para la práctica basada en evidencia en nutrición deportiva para profesionales de habla no inglesa. La mayor parte de la literatura científica de alto impacto se publica en inglés, generando asimetría de información. Esto valida el trabajo de síntesis que hace Holway — y también el sentido de esta app.",source:"PubMed · francisholway.online, Abril 2026"},
 ];
 
-let currentFilter="ALL", currentView="list", currentSupp=null, aiText=null, aiLoading=false;
+const SUPPLEMENTS = [
+  {id:1,g:"A",n:"Bebidas deportivas y geles",v:"✅ Usar en deportes de resistencia >60 min.",s:"CHO de rápida absorción + electrolitos. COI 2018: 30-60 g CHO/h mejoran rendimiento en eventos prolongados. El sodio facilita reabsorción y estimula la sed.",d:"30–60 g CHO/h + 500–700 mg sodio/L"},
+  {id:2,g:"A",n:"Comidas líquidas (proteínas + CHO)",v:"✅ Útiles en recuperación, viajes y apetito suprimido.",s:"COI las clasifica como alimentos deportivos Grupo A. Suministran macro y micronutrientes cuando el acceso a alimentos sólidos es difícil. Facilitan la ventana anabólica post-entrenamiento.",d:"20–40 g proteína + CHO según demanda energética"},
+  {id:3,g:"A",n:"Proteína de suero (Whey)",v:"✅ Efectiva para hipertrofia y recuperación.",s:"Rica en leucina (~11%), activa mTOR y síntesis proteica muscular. Meta-análisis BJSM 2018 (n=1800+): aumenta masa y fuerza con entrenamiento de resistencia.",d:"20–40 g post-entrenamiento; 1.6–2.2 g/kg/día total"},
+  {id:4,g:"A",n:"Barras deportivas",v:"✅ Práctica, no mágica. Ventaja logística.",s:"CHO + proteína con composición controlada. AIS Grupo A por practicidad y efectividad.",d:"1 barra (30–50 g CHO) 1h antes o post-entrenamiento"},
+  {id:5,g:"A",n:"Probióticos",v:"✅ Reducen enfermedades en temporadas de carga alta.",s:"Huang et al. 2021: reducen incidencia de ITRS en atletas. Efecto dependiente de cepa y dosis.",d:"≥10⁹ UFC/día (ej. L. rhamnosus GG)"},
+  {id:6,g:"A",n:"Calcio, Hierro, Zinc",v:"✅ Solo si hay deficiencia confirmada por análisis.",s:"Alta prevalencia en atletas. Déficit de hierro deteriora VO₂max. Zinc afecta inmunidad. Sin déficit verificado no hay beneficio ergogénico.",d:"Según análisis. Hierro: 18–45 mg/día. Zinc: 8–11 mg/día"},
+  {id:7,g:"A",n:"Multivitamínico",v:"✅ Útil en dietas restrictivas.",s:"Sin efecto ergogénico en atletas bien nutridos. Beneficioso en déficit calórico (Woolf & Manore 2006).",d:"1 comprimido/día con dosis diaria recomendada. No megadosis."},
+  {id:8,g:"A",n:"Vitamina D",v:"✅ Suplementar si hay deficiencia (muy frecuente).",s:"Alta prevalencia de déficit en atletas. Roles en función muscular, inmunidad y salud ósea. Farrokhyar 2015: correlación con VO₂max.",d:"1.000–4.000 UI/día según niveles séricos basales"},
+  {id:9,g:"A",n:"Cafeína",v:"✅ Uno de los ergogénicos más efectivos. La respuesta varía según genética CYP1A2.",s:"Antagonista de adenosina. Grgic et al. 2020 (300+ estudios): mejora resistencia +2-4%, potencia y fuerza. NOVEDAD 2026: El gen CYP1A2 explica la variabilidad individual. Metabolizadores rápidos (AA) obtienen +6.8% con 4 mg/kg; lentos (CC) pueden empeorar un 13.7%. Si la cafeína no te funciona, puede ser genética.",d:"3–6 mg/kg, 45-60 min antes. Empezar con dosis bajas para evaluar respuesta individual.",new:true},
+  {id:10,g:"A",n:"Creatina monohidrato",v:"✅ Mayor evidencia para potencia, fuerza, hipertrofia y salud en el envejecimiento.",s:"+500 ensayos clínicos. Aumenta fosfocreatina muscular. Meta-análisis JISSN: +5-15% fuerza anaeróbica. NOVEDAD 2026: Evidencia sólida en mujeres posmenopáusicas y adultos mayores — mejora fuerza muscular y geometría ósea. Datos prometedores en diabetes tipo 2. Las dosis altas a largo plazo NO aumentan efectos secundarios vs placebo. Ya no es solo para atletas de potencia.",d:"3–5 g/día mantenimiento. Carga: 20 g/día x 5-7 días (opcional). Segura a largo plazo.",new:true},
+  {id:11,g:"A",n:"Bicarbonato de sodio",v:"✅ Efectivo en esfuerzos de alta intensidad.",s:"Tamponador extracelular de H⁺. Carr et al.: mejora ~2% en pruebas de 1-10 min. COI Grupo A con protocolo específico.",d:"0.2–0.3 g/kg, 60-90 min antes con abundante agua"},
+  {id:12,g:"A",n:"Glicerol",v:"⚠️ Útil en calor extremo. Legal desde 2018.",s:"Hiperhidratante. +600-700 mL retención de agua. Removido de lista WADA en 2018.",d:"1 g/kg + 26 mL/kg de líquido, 60-90 min antes"},
+  {id:13,g:"B",n:"Beta-alanina",v:"⚠️ Efectiva para esfuerzos de 1-4 min.",s:"Precursor de carnosina muscular. Hobson et al.: +2.85% en 60-240 s. COI la reconoce con evidencia sólida (AIS la tiene en B).",d:"3.2–6.4 g/día en dosis divididas durante ≥4 semanas"},
+  {id:14,g:"B",n:"Nitratos (remolacha/beetroot)",v:"⚠️ Más efectivo en atletas recreativos.",s:"Convierte a óxido nítrico, mejora eficiencia mitocondrial. Jones 2018: menor efecto en atletas de élite.",d:"~400 mg nitratos (~500 mL jugo de remolacha), 2-3 h antes"},
+  {id:15,g:"B",n:"Antioxidantes C y E",v:"⚠️ Contraindicados en uso crónico durante entrenamiento.",s:"Paradoja: las ROS son señales necesarias. Merry & Ristow 2016: bloquean adaptaciones al entrenamiento en uso crónico.",d:"Solo como corrección de deficiencia. Evitar megadosis crónicas."},
+  {id:16,g:"B",n:"Carnitina",v:"⚠️ Sin evidencia consistente en deportistas sanos.",s:"No aumenta niveles musculares significativamente con suplementación oral. Revisiones sistemáticas no muestran mejoras en rendimiento.",d:"Sin protocolo establecido"},
+  {id:17,g:"B",n:"HMB",v:"⚠️ Posible beneficio en personas no entrenadas.",s:"Metabolito de leucina. Evidencia mixta. Sin ventaja en atletas ya entrenados.",d:"3 g/día si se decide usar"},
+  {id:18,g:"B",n:"Aceites de pescado (Omega-3)",v:"⚠️ Prometedor para recuperación y salud general.",s:"Smith et al. 2011: 4 g EPA+DHA/día aumenta síntesis proteica muscular. Propiedades antiinflamatorias documentadas.",d:"2–4 g/día EPA+DHA combinados"},
+  {id:19,g:"B",n:"Polifenoles (frutas)",v:"⚠️ Útiles como alimento funcional para recuperación.",s:"Jugo de cereza Montmorency: reduce daño muscular post-ejercicio. Resultados reproducibles.",d:"Jugo de cereza: 30 mL concentrado 2x/día"},
+  {id:20,g:"B",n:"Estimulantes del sabor (Mentol)",v:"⚠️ Útil en deportes en ambientes calurosos.",s:"Activa receptores TRPM8 sin reducir temperatura central. Mejora percepción térmica y tolerancia al ejercicio en calor.",d:"Enjuague bucal con solución de mentol 0.01%"},
+  {id:21,g:"B",n:"Cúrcuma (curcumina)",v:"⚠️ Potencial antiinflamatorio limitado por biodisponibilidad.",s:"Inhibe NF-κB y COX-2. Biodisponibilidad oral extremadamente baja (<1%). Mejora con piperina.",d:"500-1000 mg/día de curcumina con piperina"},
+  {id:22,g:"B",n:"Cetonas exógenas",v:"⚠️ Sin evidencia suficiente. Alto costo.",s:"Evans et al. 2022: no mejoras consistentes en resistencia. En algunos estudios perjudican uso de glucógeno.",d:"Sin protocolo establecido"},
+  {id:23,g:"B",n:"Jugo de encurtidos (Pickle juice)",v:"⚠️ Evidencia emergente para calambres.",s:"Miller et al. 2010: reduce calambres en ~45%. Efecto neurológico, no osmótico.",d:"~80 mL ante calambres agudos"},
+  {id:24,g:"B",n:"NAC (N-Acetil Cisteína)",v:"⚠️ No recomendado en uso crónico.",s:"Precursor del glutatión. Puede interferir con adaptaciones al entrenamiento si se usa crónicamente.",d:"600-1800 mg en períodos específicos"},
+  {id:25,g:"B",n:"Pre/probióticos",v:"⚠️ Prometedores para salud intestinal.",s:"AIS Grupo B. Evidencia creciente eje intestino-rendimiento. Sin efecto ergogénico directo demostrado.",d:"Inulina: 5-10 g/día"},
+  {id:26,g:"B",n:"Colágeno",v:"⚠️ Evidencia 2026: útil para tendones bajo carga mecánica. No sirve para músculo.",s:"Shaw 2017: 15 g hidrolizado + vitamina C antes de ejercicio de impacto aumenta síntesis en tendones. NOVEDAD 2026: metaanálisis de 113 ensayos (~8.000 participantes) confirma que NO aumenta masa muscular ni previene lesiones en general. En jugadoras de élite de fútbol, 30 g 3x/semana + vitamina C aumentó rigidez del tendón rotuliano.",d:"15–30 g hidrolizado + vitamina C, 60 min antes del ejercicio de impacto",new:true},
+  {id:27,g:"C",n:"BCAA",v:"❌ Innecesarios con suficiente proteína de calidad.",s:"Wolfe 2017: BCAA solos son inferiores a proteína completa. Sin todos los aa esenciales. Mercadotecnia sobre ciencia.",d:"Mejor invertir en proteína completa (whey, huevo, carne)"},
+  {id:28,g:"C",n:"Cromo",v:"❌ Sin beneficio demostrado.",s:"Althuis 2002 (20+ ECA): sin efectos en glucosa, masa muscular ni composición corporal.",d:"No recomendado"},
+  {id:29,g:"C",n:"Coenzima Q10",v:"❌ Sin efecto ergogénico.",s:"CoQ10 muscular no aumenta con suplementación oral. Meta-análisis negativos en VO₂max.",d:"No recomendado"},
+  {id:30,g:"C",n:"Ginseng",v:"❌ Evidencia insuficiente.",s:"Bahrke & Morgan 2000: estudios de baja calidad. Sin evidencia de mejora aeróbica.",d:"No recomendado"},
+  {id:31,g:"C",n:"Glucosamina",v:"❌ Sin beneficio preventivo en articulaciones sanas.",s:"GAIT trial NEJM 2006 (n>1600): sin beneficio vs placebo en personas sin artritis severa.",d:"Solo en artrosis diagnosticada: 1500 mg/día"},
+  {id:32,g:"C",n:"Aceite MCT",v:"❌ No mejora rendimiento.",s:"En dosis efectivas causa malestar gastrointestinal severo. Sin mejora en resistencia.",d:"No recomendado"},
+  {id:33,g:"C",n:"Inosina",v:"❌ Sin efecto. Aumenta ácido úrico.",s:"Williams 1990: sin mejoras en VO₂max. Dosis altas: riesgo de gota.",d:"No recomendado"},
+  {id:34,g:"C",n:"Magnesio",v:"⚠️ Solo si hay déficit verificado.",s:"Sin deficiencia documentada: no hay beneficio ergogénico. Déficit frecuente y subclínico en atletas.",d:"Solo si déficit: 300-400 mg/día"},
+  {id:35,g:"C",n:"Ácido alfa-lipoico",v:"❌ Sin beneficio en deportistas sanos.",s:"AIS Grupo C. Sin evidencia de mejora en rendimiento deportivo en personas sanas.",d:"No recomendado"},
+  {id:36,g:"C",n:"Vitamina E (altas dosis)",v:"❌ Interfiere con adaptaciones al ejercicio.",s:"Ristow 2009 (PNAS): altas dosis previenen mejoras en sensibilidad insulínica post-ejercicio.",d:"Solo desde la dieta. No suplementar."},
+  {id:37,g:"C",n:"Fosfatos",v:"❌ Evidencia inconsistente.",s:"Estudios modernos no replican mejoras históricas en VO₂max.",d:"No recomendado"},
+  {id:38,g:"C",n:"Tirosina",v:"❌ Sin beneficio ergogénico en condiciones normales.",s:"Posible efecto cognitivo en privación de sueño. Sin mejoras consistentes en rendimiento físico.",d:"No recomendado"},
+  {id:39,g:"D",n:"Efedrina",v:"🚫 PROHIBIDA. Extremadamente peligrosa.",s:"150+ muertes en EE.UU. Infartos, ACV, arritmias. Prohibida FDA 2004 y WADA.",d:"PROHIBIDA"},
+  {id:40,g:"D",n:"Sibutramina",v:"🚫 Retirada del mercado. Causa infartos.",s:"Estudio SCOUT (NEJM): aumenta riesgo cardiovascular. Frecuente como adulterante ilegal en suplementos.",d:"PROHIBIDA"},
+  {id:41,g:"D",n:"Androstenediona",v:"🚫 PROHIBIDA WADA.",s:"King JAMA 1999: NO aumenta testosterona pero SÍ aumenta estradiol. Prohibida por WADA.",d:"PROHIBIDA"},
+  {id:42,g:"D",n:"Maca",v:"❌ Sin evidencia. Es marketing.",s:"Lee 2016: NO mejora testosterona ni rendimiento físico. AIS Grupo D.",d:"No recomendada"},
+  {id:43,g:"D",n:"DHEA",v:"🚫 PROHIBIDA WADA. Riesgo de positivo.",s:"Conversión a testosterona mínima en adultos jóvenes. Riesgo real de positivo en doping.",d:"PROHIBIDA en deporte competitivo"},
+  {id:44,g:"D",n:"SARMs (Ostarine, Ligandrol, Andarine)",v:"🚫 Ilegales para uso humano. PROHIBIDOS WADA.",s:"No aprobados por ninguna agencia. Hepatotoxicidad, supresión HPG. Frecuentes en suplementos.",d:"PROHIBIDOS"},
+  {id:45,g:"D",n:"GHRP-1 y 2 / Péptidos GH",v:"🚫 PROHIBIDOS WADA.",s:"Retención de líquidos, resistencia a insulina. No aprobados para uso en seres humanos sanos.",d:"PROHIBIDOS"},
+  {id:46,g:"D",n:"Higenamina",v:"🚫 PROHIBIDA WADA desde 2017.",s:"Frecuente en pre-workouts como ingrediente 'natural'. Alto riesgo de positivo inadvertido.",d:"PROHIBIDA"},
+  {id:47,g:"D",n:"Estricnina",v:"🚫 VENENO. Dosis letal ~1-2 mg/kg.",s:"Thomas Hicks, maratón olímpica 1904. Absolutamente prohibida.",d:"PROHIBIDA. TÓXICA."},
+  {id:48,g:"D",n:"Sinefrina",v:"🚫 PROHIBIDA WADA.",s:"Riesgo cardiovascular con cafeína. Común en quemadores de grasa.",d:"PROHIBIDA"},
+];
 
-function getFiltered(){return currentFilter==="ALL"?S:S.filter(s=>s.g===currentFilter);}
+let currentFilter="ALL", currentView="table", currentSupp=null, aiText=null, aiLoading=false;
 
-function renderContent(){
+function getFiltered(){return currentFilter==="ALL"?SUPPLEMENTS:SUPPLEMENTS.filter(s=>s.g===currentFilter);}
+
+async function doRegister(){
+  const nombre=document.getElementById("inp-nombre").value.trim();
+  const apellido=document.getElementById("inp-apellido").value.trim();
+  const ciudad=document.getElementById("inp-ciudad").value.trim();
+  const errEl=document.getElementById("reg-error");
+  const btn=document.getElementById("btn-register");
+  if(!nombre||!apellido||!ciudad){errEl.textContent="Por favor completá todos los campos.";errEl.style.display="block";return;}
+  errEl.style.display="none";
+  btn.textContent="Registrando...";btn.disabled=true;
+  try{
+    const now=new Date();
+    const fecha=now.toLocaleDateString("es-AR");
+    const hora=now.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"});
+    const params=new URLSearchParams({action:"write",fecha,hora,nombre,apellido,ciudad});
+    await fetch(SHEET_URL+"?"+params,{method:"GET",mode:"no-cors"});
+  }catch(e){console.log("Sheet error:",e);}
+  document.getElementById("reg-screen").style.display="none";
+  document.getElementById("main-app").style.display="block";
+  loadVisitCount();
+  renderNews();
+  renderSupps();
+  btn.textContent="Ingresar →";btn.disabled=false;
+}
+
+async function loadVisitCount(){
+  try{
+    const res=await fetch(SHEET_URL+"?action=read");
+    const rows=await res.json();
+    const count=Math.max(0,rows.length-1);
+    document.getElementById("visit-count").textContent=count+" registros";
+  }catch{document.getElementById("visit-count").textContent="ver registros";}
+}
+
+async function openStats(){
+  document.getElementById("stats-overlay").style.display="flex";
+  document.getElementById("stats-panel").innerHTML=`<div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.07em;color:#6366f1;margin-bottom:4px">Registro de Visitas</div><div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem">Cargando datos...</div><div style="display:flex;flex-direction:column;gap:8px">${[1,2,3].map(()=>`<div style="height:40px;background:rgba(255,255,255,0.04);border-radius:8px;animation:shimmer 1.4s infinite"></div>`).join("")}</div>`;
+  try{
+    const res=await fetch(SHEET_URL+"?action=read");
+    const rows=await res.json();
+    const data=rows.slice(1).map(r=>({fecha:r[0],hora:r[1],nombre:r[2],apellido:r[3],ciudad:r[4]}));
+    const ciudades=new Set(data.map(r=>r.ciudad?.toLowerCase())).size;
+    document.getElementById("stats-panel").innerHTML=`
+      <button onclick="closeStats()" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.07);border:none;color:#888;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:14px">✕</button>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.07em;color:#6366f1;margin-bottom:4px">Registro de Visitas</div>
+      <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem">Datos en tiempo real · Google Sheets</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:1rem">
+        ${[{l:"Total",v:data.length,i:"👥"},{l:"Ciudades",v:ciudades,i:"🌎"},{l:"Último",v:data[data.length-1]?.hora||"—",i:"🕐"}].map(c=>`<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px;text-align:center"><div style="font-size:1.2rem">${c.i}</div><div style="font-size:1.4rem;font-weight:700;color:#6366f1;font-family:'Bebas Neue',sans-serif">${c.v}</div><div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.04em;margin-top:2px">${c.l}</div></div>`).join("")}
+      </div>
+      <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Listado (${data.length} personas)</div>
+      <div style="border:1px solid rgba(255,255,255,0.06);border-radius:10px;overflow:hidden;max-height:280px;overflow-y:auto">
+        <table style="width:100%;border-collapse:collapse">
+          <thead><tr style="background:rgba(255,255,255,0.04)">${["#","Nombre","Apellido","Ciudad","Fecha","Hora"].map(h=>`<th style="padding:6px 10px;text-align:left;font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.05em;border-bottom:1px solid rgba(255,255,255,0.06);font-weight:600">${h}</th>`).join("")}</tr></thead>
+          <tbody>${[...data].reverse().map((r,i)=>`<tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
+            <td style="padding:6px 10px;font-size:11px;color:#444">${data.length-i}</td>
+            <td style="padding:6px 10px;font-size:13px;font-weight:600">${r.nombre||""}</td>
+            <td style="padding:6px 10px;font-size:13px">${r.apellido||""}</td>
+            <td style="padding:6px 10px;font-size:13px;color:#6366f1">${r.ciudad||""}</td>
+            <td style="padding:6px 10px;font-size:11px;color:#555">${r.fecha||""}</td>
+            <td style="padding:6px 10px;font-size:11px;color:#555">${r.hora||""}</td>
+          </tr>`).join("")}</tbody>
+        </table>
+      </div>`;
+  }catch{document.getElementById("stats-panel").innerHTML+="<div style='color:#ef4444;font-size:13px;margin-top:1rem'>Error al cargar datos. Verificá que el script esté publicado.</div>";}
+}
+
+function closeStats(){document.getElementById("stats-overlay").style.display="none";}
+function openLegal(){document.getElementById("legal-overlay").style.display="flex";}
+function closeLegal(){document.getElementById("legal-overlay").style.display="none";}
+
+function setTab(tab,btn){
+  document.getElementById("tab-supp").style.display=tab==="supp"?"block":"none";
+  document.getElementById("tab-news").style.display=tab==="news"?"block":"none";
+  document.querySelectorAll(".tab-btn").forEach(b=>{b.style.color="#555";b.style.fontWeight="400";b.style.borderBottom="2px solid transparent";});
+  btn.style.color="#fff";btn.style.fontWeight="600";btn.style.borderBottom="2px solid #6366f1";
+}
+
+function setFilter(f,btn){
+  currentFilter=f;
+  document.querySelectorAll(".fbtn").forEach(b=>{b.className="fbtn";});
+  const map={ALL:"fbtn fall",A:"fbtn fa",B:"fbtn fb",C:"fbtn fc",D:"fbtn fd"};
+  btn.className=map[f];
+  renderSupps();
+}
+
+function setView(v,btn){
+  currentView=v;
+  document.querySelectorAll(".vbtn").forEach(b=>b.classList.remove("va"));
+  btn.classList.add("va");
+  renderSupps();
+}
+
+function renderNews(){
+  document.getElementById("tab-news").innerHTML=`
+    <div style="font-size:11px;color:#555;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1rem">${NEWS.length} entradas · Fuentes: PubMed, francisholway.online, AIS Framework</div>
+    ${NEWS.map(n=>`<div style="background:#14141c;border:1px solid rgba(255,255,255,0.06);border-left:3px solid ${n.tc};border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:1rem;animation:fadeIn 0.3s ease">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+        <span style="background:${n.tc}20;color:${n.tc};border:1px solid ${n.tc}40;border-radius:5px;padding:2px 8px;font-size:10px;font-weight:700;letter-spacing:0.07em">${n.tag}</span>
+        <span style="font-size:11px;color:#555">${n.date}</span>
+        <span style="font-size:11px;color:#444;margin-left:auto">${n.supp}</span>
+      </div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.04em;color:#e2e2ea;margin-bottom:8px;line-height:1.2">${n.title}</div>
+      <div style="font-size:13px;line-height:1.7;color:#888">${n.body}</div>
+      <div style="margin-top:10px;font-size:10px;color:#444;border-top:1px solid rgba(255,255,255,0.05);padding-top:8px">📚 ${n.source}</div>
+    </div>`).join("")}`;
+}
+
+function renderSupps(){
   const filtered=getFiltered();
-  const el=document.getElementById("content");
-  if(currentView==="list"){
+  const el=document.getElementById("supp-content");
+  if(currentView==="table"){
+    el.innerHTML=`<div style="overflow-x:auto"><table>
+      <thead><tr><th>Grupo</th><th>Suplemento</th><th>Veredicto</th><th></th></tr></thead>
+      <tbody>${filtered.map(s=>{const grp=GROUPS[s.g];return`<tr onclick="openSupp(${s.id})">
+        <td style="border-left:3px solid ${grp.c};padding-left:10px"><span class="badge ${grp.cl}">${s.g}</span></td>
+        <td style="font-weight:500">${s.n}${s.new?` <span style="font-size:10px;background:#6366f120;color:#6366f1;border-radius:4px;padding:1px 5px;border:1px solid #6366f140;margin-left:4px">NUEVO</span>`:""}` +`</td>
+        <td style="color:#888;font-size:13px;max-width:250px">${s.v.slice(0,50)}...</td>
+        <td style="color:${grp.c};font-size:13px;font-weight:600">Ver →</td>
+      </tr>`;}).join("")}</tbody>
+    </table></div>`;
+  } else {
     let html="";
     ["A","B","C","D"].filter(g=>currentFilter==="ALL"||currentFilter===g).forEach(g=>{
       const grp=GROUPS[g];
       const items=filtered.filter(s=>s.g===g);
       if(!items.length)return;
       html+=`<div style="margin-bottom:1.5rem">
-        <div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid ${grp.border};margin-bottom:6px">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:${grp.color}">${g}</span>
-          <div><div style="font-weight:600;font-size:14px;color:${grp.color}">${grp.label}</div><div style="font-size:11px;color:#555">${items.length} suplementos</div></div>
+        <div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid ${grp.br};margin-bottom:6px">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:${grp.c}">${g}</span>
+          <div><div style="font-weight:600;font-size:14px;color:${grp.c}">${grp.l}</div><div style="font-size:11px;color:#555">${items.length} suplementos</div></div>
         </div>
-        ${items.map(s=>`<div class="row" onclick="openSupp(${s.id})">
-          <span class="badge ${grp.cls}">${g}</span>
-          <div style="flex:1"><div style="font-size:14px;font-weight:500">${s.name}</div><div style="font-size:12px;color:#666;margin-top:2px">${s.verdict.slice(0,58)}…</div></div>
-          <span style="color:#555;font-size:18px">›</span>
+        ${items.map(s=>`<div class="row" onclick="openSupp(${s.id})" style="border-left:3px solid ${grp.c}">
+          <div style="flex:1">
+            <div style="font-size:14px;font-weight:500">${s.n}${s.new?` <span style="font-size:10px;background:#6366f120;color:#6366f1;border-radius:4px;padding:1px 5px;border:1px solid #6366f140">NUEVO</span>`:""}</div>
+            <div style="font-size:12px;color:#666;margin-top:2px">${s.v.slice(0,55)}...</div>
+          </div>
+          <span style="color:${grp.c};font-size:16px">›</span>
         </div>`).join("")}
       </div>`;
     });
     el.innerHTML=html;
-  } else {
-    el.innerHTML=`<div style="overflow-x:auto"><table>
-      <thead><tr><th>Grupo</th><th>Suplemento</th><th>Veredicto</th><th></th></tr></thead>
-      <tbody>${filtered.map(s=>{const grp=GROUPS[s.g];return`<tr onclick="openSupp(${s.id})" style="cursor:pointer">
-        <td><span class="badge ${grp.cls}">${s.g}</span></td>
-        <td style="font-weight:500">${s.name}</td>
-        <td style="color:#888;font-size:13px">${s.verdict.slice(0,45)}…</td>
-        <td style="color:#6366f1;font-size:13px">Ver →</td>
-      </tr>`;}).join("")}</tbody>
-    </table></div>`;
   }
 }
 
-function setFilter(f,btn){
-  currentFilter=f;
-  document.querySelectorAll(".filter-btn").forEach(b=>{
-    b.className="filter-btn";
-  });
-  const map={ALL:"active-all",A:"active-a",B:"active-b",C:"active-c",D:"active-d"};
-  btn.classList.add(map[f]);
-  renderContent();
-}
-
-function setView(v,btn){
-  currentView=v;
-  document.querySelectorAll(".view-btn").forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active");
-  renderContent();
-}
-
 async function openSupp(id){
-  currentSupp=S.find(s=>s.id===id);
-  aiText=null; aiLoading=true;
-  renderModal();
+  currentSupp=SUPPLEMENTS.find(s=>s.id===id);
+  aiText=null;aiLoading=true;
+  renderPanel();
   document.getElementById("overlay").style.display="flex";
   try{
     const res=await fetch("https://api.anthropic.com/v1/messages",{
       method:"POST",headers:{"Content-Type":"application/json"},
       body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:800,
-        system:"Eres nutricionista deportivo experto. Responde en español. Usa exactamente estas 4 secciones: 🔬 MECANISMO, 📊 EVIDENCIA, ⚡ PARA QUIÉN, 💊 DOSIS. Máximo 2-3 oraciones por sección. Sin markdown adicional.",
-        messages:[{role:"user",content:`Análisis científico del suplemento deportivo: "${currentSupp.name}" (AIS Grupo ${currentSupp.g}).`}]})
+        system:"Eres nutricionista deportivo experto. Responde en español. Usa 4 secciones: 🔬 MECANISMO, 📊 EVIDENCIA, ⚡ PARA QUIÉN, 💊 DOSIS. Máximo 2-3 oraciones por sección. Sin markdown.",
+        messages:[{role:"user",content:`Análisis científico del suplemento: "${currentSupp.n}" (AIS Grupo ${currentSupp.g}).`}]})
     });
     const data=await res.json();
     aiText=data.content?.map(b=>b.text||"").join("")||"Sin respuesta.";
-  }catch{aiText="Error al conectar con el análisis.";}
-  aiLoading=false;
-  renderModal();
+  }catch{aiText="Error al conectar con el análisis. Usá la información base disponible.";}
+  aiLoading=false;renderPanel();
 }
 
-function renderModal(){
+function renderPanel(){
   const s=currentSupp;
   const grp=GROUPS[s.g];
-  const aiSection=aiLoading
+  const aiHtml=aiLoading
     ?`<div style="display:flex;flex-direction:column;gap:8px">${[70,90,55,80].map(w=>`<div style="height:11px;background:rgba(255,255,255,0.06);border-radius:4px;width:${w}%;animation:shimmer 1.4s infinite"></div>`).join("")}</div>`
-    :aiText?`<div style="font-size:14px;line-height:1.7;color:#aaa">${aiText.split("\n").filter(l=>l.trim()).map(l=>{const isH=l.match(/^[🔬📊⚡💊]/);return`<p style="margin:${isH?"14px 0 5px":"0 0 6px"};font-weight:${isH?"600":"400"};color:${isH?"#a5b4fc":"#aaa"};font-size:${isH?"11px":"14px"};${isH?"text-transform:uppercase;letter-spacing:0.05em":""}">${l}</p>`;}).join("")}</div>`:"";
-
+    :aiText?`<div style="font-size:14px;line-height:1.7;color:#bbb">${aiText.split("\n").filter(l=>l.trim()).map(l=>{const h=l.match(/^[🔬📊⚡💊]/);return`<p style="margin:${h?"12px 0 4px":"0 0 6px"};font-weight:${h?"700":"400"};color:${h?grp.c:"#bbb"};font-size:${h?"11px":"14px"};${h?"text-transform:uppercase;letter-spacing:0.05em":""}">${l}</p>`;}).join("")}</div>`:"";
   document.getElementById("panel").innerHTML=`
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
       <div>
-        <span class="badge ${grp.cls}" style="margin-bottom:8px;display:inline-block">GRUPO ${s.g} · ${grp.label}</span>
-        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:0.05em;color:#fff;font-weight:400;line-height:1.1">${s.name}</h2>
+        <span class="badge ${grp.cl}" style="margin-bottom:8px;display:inline-block">GRUPO ${s.g} · ${grp.l}</span>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:0.05em;line-height:1.1">${s.n}</div>
       </div>
-      <button onclick="closeModal()" style="background:rgba(255,255,255,0.07);border:none;color:#888;border-radius:50%;width:32px;height:32px;font-size:1rem;flex-shrink:0;display:flex;align-items:center;justify-content:center">✕</button>
+      <button onclick="closePanel()" style="background:rgba(255,255,255,0.07);border:none;color:#888;border-radius:50%;width:32px;height:32px;font-size:1rem;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center">✕</button>
     </div>
-    <div style="background:${grp.bg};border:1px solid ${grp.border};border-radius:10px;padding:12px 16px;margin-bottom:12px">
-      <div style="font-size:11px;color:${grp.color};text-transform:uppercase;letter-spacing:0.08em;font-weight:700;margin-bottom:4px">Veredicto</div>
-      <div style="font-size:14px">${s.verdict}</div>
+    <div style="background:${grp.bg};border:1px solid ${grp.br};border-radius:10px;padding:12px 16px;margin-bottom:12px">
+      <div style="font-size:11px;color:${grp.c};text-transform:uppercase;letter-spacing:0.08em;font-weight:700;margin-bottom:4px">Veredicto</div>
+      <div style="font-size:14px">${s.v}</div>
     </div>
     <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:13px">
-      <span style="color:#555;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;font-weight:600">Dosis base: </span><span style="color:#ccc">${s.dose}</span>
+      <span style="color:#555;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;font-weight:600">Dosis base: </span><span style="color:#ccc">${s.d}</span>
     </div>
     <div style="margin-bottom:16px">
       <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;font-weight:600">Fundamento científico</div>
-      <div style="font-size:14px;line-height:1.65;color:#888">${s.science}</div>
+      <div style="font-size:14px;line-height:1.65;color:#888">${s.s}</div>
     </div>
     <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:14px">
       <div style="font-size:11px;color:#6366f1;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;font-weight:600">✦ Análisis detallado con IA</div>
-      ${aiSection}
+      ${aiHtml}
     </div>`;
 }
 
-function closeModal(){
-  document.getElementById("overlay").style.display="none";
-  currentSupp=null; aiText=null;
-}
-
-renderContent();
+function closePanel(){document.getElementById("overlay").style.display="none";currentSupp=null;aiText=null;}
 </script>
 </body>
 </html>
