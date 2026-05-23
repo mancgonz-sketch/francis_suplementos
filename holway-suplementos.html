@@ -36,6 +36,7 @@ th{text-align:left;padding:8px 12px;font-size:11px;color:#555;text-transform:upp
 td{padding:10px 12px;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.04)}
 tr{cursor:pointer}
 tr:hover td{background:rgba(255,255,255,0.03)}
+.cite{display:inline-block;font-size:10px;color:#6366f1;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2);border-radius:4px;padding:1px 6px;margin:2px 0;font-style:italic}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:4px}
@@ -66,16 +67,13 @@ tr:hover td{background:rgba(255,255,255,0.03)}
         <input type="text" id="inp-ciudad" placeholder="Ej: Buenos Aires">
       </div>
       <div id="reg-error" style="display:none;font-size:12px;color:#ef4444;background:rgba(239,68,68,0.08);border-radius:8px;padding:8px 12px;margin-bottom:12px"></div>
-      <button id="btn-register" onclick="doRegister()" style="width:100%;background:#6366f1;color:#fff;border:none;border-radius:10px;padding:0.85rem;font-size:0.9rem;font-weight:700;cursor:pointer;letter-spacing:0.04em;transition:all 0.2s">
-        Ingresar →
-      </button>
+      <button id="btn-register" onclick="doRegister()" style="width:100%;background:#6366f1;color:#fff;border:none;border-radius:10px;padding:0.85rem;font-size:0.9rem;font-weight:700;cursor:pointer;letter-spacing:0.04em;transition:all 0.2s">Ingresar →</button>
       <div style="font-size:11px;color:#444;text-align:center;margin-top:12px;line-height:1.5">Tus datos son solo visibles para el administrador de la app.</div>
     </div>
   </div>
 </div>
 
 <div id="main-app" style="display:none;padding-bottom:5rem">
-
   <div style="background:linear-gradient(180deg,#13131a 0%,#0c0c10 100%);border-bottom:1px solid rgba(255,255,255,0.06);padding:1.2rem 1.2rem 0;position:sticky;top:0;z-index:10;backdrop-filter:blur(12px)">
     <div style="max-width:900px;margin:0 auto">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem">
@@ -84,13 +82,10 @@ tr:hover td{background:rgba(255,255,255,0.03)}
           <p style="font-size:11px;color:#555;letter-spacing:0.06em;text-transform:uppercase;margin:4px 0 10px">Clasificación AIS · Actualizado Mayo 2026</p>
         </div>
         <div style="display:flex;gap:8px;align-items:center;flex-shrink:0;margin-top:4px">
-          <button onclick="openStats()" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:5px 10px;color:#888;font-size:12px;display:flex;align-items:center;gap:5px">
-            👥 <span id="visit-count">...</span>
-          </button>
+          <button onclick="openStats()" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:5px 10px;color:#888;font-size:12px;display:flex;align-items:center;gap:5px">👥 <span id="visit-count">...</span></button>
           <button onclick="openLegal()" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:5px 10px;color:#888;font-size:12px">ⓘ</button>
         </div>
       </div>
-
       <div style="display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,0.06)">
         <button class="tab-btn" onclick="setTab('supp',this)" style="background:transparent;border:none;color:#fff;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;border-bottom:2px solid #6366f1;transition:all 0.15s">📋 Suplementos</button>
         <button class="tab-btn" onclick="setTab('news',this)" style="background:transparent;border:none;color:#555;padding:8px 16px;font-size:13px;font-weight:400;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s">🆕 Novedades <span style="background:#6366f1;color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;margin-left:4px">8</span></button>
@@ -99,7 +94,6 @@ tr:hover td{background:rgba(255,255,255,0.03)}
   </div>
 
   <div style="max-width:900px;margin:0 auto;padding:1.2rem 1rem 0">
-
     <div id="tab-supp">
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:1rem">
         <div style="display:flex;background:rgba(255,255,255,0.05);border-radius:8px;padding:3px;gap:2px;border:1px solid rgba(255,255,255,0.07)">
@@ -116,9 +110,7 @@ tr:hover td{background:rgba(255,255,255,0.03)}
       </div>
       <div id="supp-content"></div>
     </div>
-
     <div id="tab-news" style="display:none"></div>
-
   </div>
 </div>
 
@@ -131,26 +123,24 @@ tr:hover td{background:rgba(255,255,255,0.03)}
 </div>
 
 <div id="legal-overlay" class="overlay" style="display:none" onclick="if(event.target===this)closeLegal()">
-  <div class="panel" style="border-top:3px solid #6366f1;max-height:70vh">
+  <div class="panel" style="border-top:3px solid #6366f1;max-height:75vh">
     <button onclick="closeLegal()" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.07);border:none;color:#888;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:14px">✕</button>
     <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.07em;color:#6366f1;margin-bottom:4px">Aviso Legal</div>
     <div style="font-size:12px;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1.2rem">Información importante sobre esta aplicación</div>
     <div style="font-size:13px;line-height:1.7;color:#888">
       <p style="margin-bottom:12px">Esta aplicación es una herramienta de consulta informativa desarrollada con fines educativos. El contenido presentado es una síntesis de publicaciones científicas de acceso público, organizada para facilitar la consulta de profesionales y personas interesadas en la suplementación deportiva.</p>
-      <p style="margin-bottom:12px">La información aquí contenida <strong style="color:#e2e2ea">no constituye asesoramiento médico, nutricional ni terapéutico</strong>. No reemplaza la consulta con un profesional de la salud habilitado. El autor no se responsabiliza por el uso que cada persona haga de esta información.</p>
+      <p style="margin-bottom:16px">La información aquí contenida <strong style="color:#e2e2ea">no constituye asesoramiento médico, nutricional ni terapéutico</strong>. No reemplaza la consulta con un profesional de la salud habilitado. El autor no se responsabiliza por el uso que cada persona haga de esta información.</p>
       <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px 14px;margin-bottom:16px">
         <div style="font-size:11px;color:#6366f1;text-transform:uppercase;letter-spacing:0.07em;font-weight:700;margin-bottom:8px">Fuentes científicas utilizadas</div>
         <div style="display:flex;flex-direction:column;gap:6px">
-          ${[
-            {n:"PubMed / MEDLINE",d:"Base de datos de literatura biomédica del NIH (EE.UU.)"},
-            {n:"AIS Sports Supplement Framework",d:"Instituto Australiano del Deporte — clasificación ABCD actualizada trimestralmente"},
-            {n:"COI — Comité Olímpico Internacional",d:"Consensos de nutrición deportiva y suplementación"},
-            {n:"ISSN — International Society of Sports Nutrition",d:"Journal of the International Society of Sports Nutrition (JISSN)"},
-            {n:"BJSM — British Journal of Sports Medicine",d:"Revisiones y meta-análisis en medicina deportiva"},
-            {n:"NEJM — New England Journal of Medicine",d:"Ensayos clínicos y revisiones de alta evidencia"},
-            {n:"PNAS — Proceedings of the National Academy of Sciences",d:"Investigación científica de alto impacto"},
-            {n:"Sport Integrity Australia",d:"Regulación antidoping y certificación de suplementos"},
-          ].map(f=>`<div style="font-size:12px"><span style="color:#e2e2ea;font-weight:600">${f.n}</span> — <span style="color:#666">${f.d}</span></div>`).join("")}
+          <div style="font-size:12px"><span style="color:#e2e2ea;font-weight:600">PubMed / MEDLINE</span> — <span style="color:#666">Base de datos de literatura biomédica del NIH (EE.UU.)</span></div>
+          <div style="font-size:12px"><span style="color:#e2e2ea;font-weight:600">AIS Sports Supplement Framework</span> — <span style="color:#666">Instituto Australiano del Deporte · clasificación ABCD actualizada trimestralmente</span></div>
+          <div style="font-size:12px"><span style="color:#e2e2ea;font-weight:600">COI — Comité Olímpico Internacional</span> — <span style="color:#666">Consensos de nutrición deportiva y suplementación</span></div>
+          <div style="font-size:12px"><span style="color:#e2e2ea;font-weight:600">ISSN — International Society of Sports Nutrition</span> — <span style="color:#666">Journal of the International Society of Sports Nutrition (JISSN)</span></div>
+          <div style="font-size:12px"><span style="color:#e2e2ea;font-weight:600">BJSM — British Journal of Sports Medicine</span> — <span style="color:#666">Revisiones y meta-análisis en medicina deportiva</span></div>
+          <div style="font-size:12px"><span style="color:#e2e2aa;font-weight:600">NEJM — New England Journal of Medicine</span> — <span style="color:#666">Ensayos clínicos y revisiones de alta evidencia</span></div>
+          <div style="font-size:12px"><span style="color:#e2e2ea;font-weight:600">PNAS — Proceedings of the National Academy of Sciences</span> — <span style="color:#666">Investigación científica de alto impacto</span></div>
+          <div style="font-size:12px"><span style="color:#e2e2ea;font-weight:600">Sport Integrity Australia</span> — <span style="color:#666">Regulación antidoping y certificación de suplementos</span></div>
         </div>
       </div>
       <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:12px;font-size:12px;color:#555">
@@ -178,68 +168,264 @@ const GROUPS = {
 };
 
 const NEWS = [
-  {date:"23 Mayo 2026",tag:"ACTUALIZACIÓN",tc:"#22c55e",title:"Creatina: nuevas aplicaciones en mujeres y adultos mayores",supp:"Creatina monohidrato · Grupo A",body:"Una revisión sistemática y metaanálisis de mayo de 2026 analiza los efectos del monohidrato de creatina en mujeres posmenopáusicas sobre masa magra, fuerza y densidad ósea. Mejora la fuerza muscular cuando el entrenamiento dura al menos 24 semanas. No aumenta la densidad mineral ósea directamente, pero sí mejora la geometría ósea (área, grosor cortical, sección transversal), indicadores clave de resistencia mecánica. También hay datos prometedores en diabetes tipo 2: 5 g/día por 12 semanas junto a ejercicio produce mayores reducciones de glucemia y HbA1c. La creatina ya no es solo para atletas de potencia — es una herramienta de salud para el envejecimiento activo.",source:"PubMed · Fisiología del Ejercicio (López Chicharro), Mayo 2026"},
-  {date:"23 Mayo 2026",tag:"ACTUALIZACIÓN",tc:"#22c55e",title:"Cafeína: la genética explica por qué no funciona igual en todos",supp:"Cafeína · Grupo A",body:"El gen CYP1A2 regula el 95% del metabolismo de la cafeína. El polimorfismo -163A>C determina si una persona es metabolizadora rápida (AA) o lenta (AC/CC). En un estudio con 101 ciclistas, 4 mg/kg de cafeína mejoró el rendimiento un 6.8% en metabolizadores rápidos (AA), pero lo empeoró un 13.7% en metabolizadores lentos (CC). Esto explica por qué algunos atletas dicen que la cafeína no les sirve o los pone ansiosos. Las pruebas de genotipado de CYP1A2 ya están disponibles comercialmente.",source:"Universidad de Toronto · Fisiología del Ejercicio · GSSI Latam"},
-  {date:"23 Mayo 2026",tag:"ACTUALIZACIÓN",tc:"#f59e0b",title:"Colágeno: evidencia sólida para tendones, cero para músculo",supp:"Colágeno · Grupo B",body:"Una revisión de 2025 aclara que el colágeno hidrolizado no aumenta la síntesis aguda de proteínas del tejido conectivo en fibroblastos. Sin embargo, estudios de mayor duración muestran mejoras funcionales en tendones bajo carga mecánica. En jugadoras de élite de fútbol, 30 g de colágeno hidrolizado + vitamina C tres veces por semana aumentó la rigidez del tendón rotuliano más que el placebo. Un metaanálisis de 113 ensayos clínicos (~8.000 participantes) confirma: no hay evidencia de que incremente masa muscular ni prevenga lesiones en general.",source:"Nutrición Colectiva 2025 · Anglia Ruskin University · Infobae Salud, Mayo 2026"},
-  {date:"23 Mayo 2026",tag:"NOTA CIENTÍFICA",tc:"#6366f1",title:"La disponibilidad energética como regulador neurocognitivo del rendimiento",supp:"Tema transversal",body:"Una revisión narrativa de abril de 2026 integra mecanismos metabólicos, perceptivos y de toma de decisiones en el rendimiento de resistencia. La disponibilidad energética no solo afecta la fisiología — también regula la función cognitiva, la percepción de esfuerzo y la toma de decisiones bajo fatiga. Implicancia directa en la nutrición periodizada: no se trata solo de cuántas calorías se consumen, sino de cuándo y cómo están disponibles para el cerebro durante el esfuerzo.",source:"PubMed, Abril 2026"},
-  {date:"23 Mayo 2026",tag:"NOTA CIENTÍFICA",tc:"#6366f1",title:"Creatina a largo plazo: sin aumento de efectos secundarios",supp:"Creatina monohidrato · Grupo A",body:"Un análisis de dosis-respuesta de abril de 2026 concluye que la dosis y la duración de la suplementación con monohidrato de creatina no están asociadas con aumento de efectos secundarios vs placebo. Esto refuerza el perfil de seguridad incluso en protocolos de carga (20 g/día por 5-7 días) y uso crónico. El miedo popular a que la creatina dañe los riñones sigue sin sustento científico en personas sanas.",source:"PubMed, Abril 2026"},
-  {date:"23 Mayo 2026",tag:"NOTA CIENTÍFICA",tc:"#6366f1",title:"Alginato de algas: nuevo ingrediente en el radar deportivo",supp:"Emergente · Sin clasificación AIS actual",body:"Un estudio de abril de 2026 analiza los hidrogeles de polisacáridos de alginato de origen vegetal y sus implicancias para el metabolismo de carbohidratos y la integridad gastrointestinal durante el ejercicio. El alginato forma un gel viscoso en el estómago que puede modificar la velocidad de absorción de glucosa, potencialmente útil para controlar picos glucémicos en deportes de resistencia. Aún en fase de investigación, sin clasificación AIS. Uno para seguir de cerca.",source:"PubMed, Abril 2026"},
-  {date:"23 Mayo 2026",tag:"ALERTA",tc:"#ef4444",title:"Pre-workouts multi-ingrediente: el mayor riesgo invisible del mercado",supp:"Grupo D (riesgo de contaminación)",body:"El AIS reitera su advertencia sobre suplementos multi-ingrediente. Los 'proprietary blends' no declaran dosis individuales, pueden contener higenamina, sinefrina u otras sustancias prohibidas WADA sin declararlas. Múltiples atletas han sido sancionados por positivos en doping provenientes de suplementos que creían legales. Recomendación del AIS: siempre preferir ingredientes individuales certificados (Informed Sport, HASTA) sobre combinaciones.",source:"AIS Supplement Framework 2025 · Sport Integrity Australia"},
-  {date:"23 Mayo 2026",tag:"NOTA CIENTÍFICA",tc:"#6366f1",title:"Nutrición deportiva en hispanoparlantes: barreras para la práctica basada en evidencia",supp:"Contexto educativo",body:"Una investigación de abril de 2026 señala que el idioma y la formación insuficiente son barreras significativas para la práctica basada en evidencia en nutrición deportiva para profesionales de habla no inglesa. La mayor parte de la literatura científica de alto impacto se publica en inglés, generando asimetría de información. Esta app busca acercar esa información al público hispanoparlante.",source:"PubMed, Abril 2026"},
+  {
+    date:"Mayo 2026",
+    items:[
+      {tag:"ACTUALIZACIÓN",tc:"#22c55e",title:"Creatina: nuevas aplicaciones en mujeres y adultos mayores",supp:"Creatina monohidrato · Grupo A",body:"Una revisión sistemática y metaanálisis de mayo de 2026 analiza los efectos del monohidrato de creatina en mujeres posmenopáusicas sobre masa magra, fuerza y densidad ósea. Mejora la fuerza muscular cuando el entrenamiento dura al menos 24 semanas. No aumenta la densidad mineral ósea directamente, pero sí mejora la geometría ósea (área, grosor cortical, sección transversal), indicadores clave de resistencia mecánica. También hay datos prometedores en diabetes tipo 2: 5 g/día por 12 semanas junto a ejercicio produce mayores reducciones de glucemia y HbA1c asociadas con incremento de GLUT-4 y activación de AMPK. La creatina ya no es solo para atletas de potencia — es una herramienta de salud para el envejecimiento activo.",source:"Candow et al., European Review of Aging and Physical Activity, 2026 · López Chicharro J., Fisiología del Ejercicio, Mayo 2026"},
+      {tag:"ACTUALIZACIÓN",tc:"#22c55e",title:"Cafeína: la genética explica por qué no funciona igual en todos",supp:"Cafeína · Grupo A",body:"El gen CYP1A2 regula el 95% del metabolismo de la cafeína. El polimorfismo -163A>C determina si una persona es metabolizadora rápida (AA) o lenta (AC/CC). En un estudio con 101 ciclistas, 4 mg/kg de cafeína mejoró el rendimiento un 6.8% en metabolizadores rápidos (AA), pero lo empeoró un 13.7% en metabolizadores lentos (CC). Esto explica por qué algunos atletas dicen que la cafeína no les sirve o los pone ansiosos.",source:"Grgic J. et al., BJSM, 2020 · Guest N. et al., Journal of Nutrition, 2018 · Universidad de Toronto"},
+      {tag:"ACTUALIZACIÓN",tc:"#f59e0b",title:"Colágeno: evidencia sólida para tendones, cero para músculo",supp:"Colágeno · Grupo B",body:"Una revisión de 2025 aclara que el colágeno hidrolizado no aumenta la síntesis aguda de proteínas del tejido conectivo en fibroblastos. Sin embargo, estudios de mayor duración muestran mejoras funcionales en tendones bajo carga mecánica. En jugadoras de élite de fútbol, 30 g de colágeno hidrolizado + vitamina C tres veces por semana aumentó la rigidez del tendón rotuliano más que el placebo. Un metaanálisis de 113 ensayos clínicos (~8.000 participantes) confirma: no hay evidencia de que incremente masa muscular ni prevenga lesiones en general.",source:"Shaw G. et al., Am J Clin Nutr, 2017 · Bischof K. et al., Systematic Review, 2024 · Anglia Ruskin University, 2026"},
+      {tag:"NOTA CIENTÍFICA",tc:"#6366f1",title:"La disponibilidad energética como regulador neurocognitivo",supp:"Tema transversal",body:"Una revisión narrativa de 2026 integra mecanismos metabólicos, perceptivos y de toma de decisiones en el rendimiento de resistencia. La disponibilidad energética no solo afecta la fisiología — también regula la función cognitiva, la percepción de esfuerzo y la toma de decisiones bajo fatiga. Implicancia directa en la nutrición periodizada: no se trata solo de cuántas calorías se consumen, sino de cuándo y cómo están disponibles para el cerebro durante el esfuerzo.",source:"PubMed, Abril 2026"},
+      {tag:"NOTA CIENTÍFICA",tc:"#6366f1",title:"Creatina a largo plazo: sin aumento de efectos secundarios",supp:"Creatina monohidrato · Grupo A",body:"Un análisis de dosis-respuesta de abril de 2026 concluye que la dosis y la duración de la suplementación con monohidrato de creatina no están asociadas con aumento de efectos secundarios vs placebo. Esto refuerza el perfil de seguridad incluso en protocolos de carga (20 g/día por 5-7 días) y uso crónico. El miedo popular a que la creatina dañe los riñones sigue sin sustento científico en personas sanas.",source:"Antonio J. et al., JISSN, 2024 · PubMed, Abril 2026"},
+      {tag:"NOTA CIENTÍFICA",tc:"#6366f1",title:"Alginato de algas: nuevo ingrediente en el radar deportivo",supp:"Emergente · Sin clasificación AIS actual",body:"Un estudio de abril de 2026 analiza los hidrogeles de polisacáridos de alginato de origen vegetal y sus implicancias para el metabolismo de carbohidratos y la integridad gastrointestinal durante el ejercicio. El alginato forma un gel viscoso en el estómago que puede modificar la velocidad de absorción de glucosa, potencialmente útil en deportes de resistencia. Aún en fase de investigación, sin clasificación AIS.",source:"PubMed, Abril 2026"},
+      {tag:"ALERTA",tc:"#ef4444",title:"Pre-workouts multi-ingrediente: el mayor riesgo invisible del mercado",supp:"Grupo D — riesgo de contaminación",body:"El AIS reitera su advertencia sobre suplementos multi-ingrediente. Los 'proprietary blends' no declaran dosis individuales, pueden contener higenamina, sinefrina u otras sustancias prohibidas WADA sin declararlas. Múltiples atletas han sido sancionados por positivos en doping provenientes de suplementos que creían legales. Recomendación: siempre preferir ingredientes individuales certificados (Informed Sport, HASTA).",source:"AIS Supplement Framework 2025 · Sport Integrity Australia"},
+      {tag:"NOTA CIENTÍFICA",tc:"#6366f1",title:"Nutrición deportiva en hispanoparlantes: barreras para la práctica basada en evidencia",supp:"Contexto educativo",body:"Una investigación de abril de 2026 señala que el idioma y la formación insuficiente son barreras significativas para la práctica basada en evidencia en nutrición deportiva para profesionales de habla no inglesa. La mayor parte de la literatura científica de alto impacto se publica en inglés, generando asimetría de información. Esta app busca acercar esa información al público hispanoparlante.",source:"PubMed, Abril 2026"},
+    ]
+  }
 ];
 
 const SUPPLEMENTS = [
-  {id:1,g:"A",n:"Bebidas deportivas y geles",v:"✅ Usar en deportes de resistencia >60 min.",s:"CHO de rápida absorción + electrolitos. COI 2018: 30-60 g CHO/h mejoran rendimiento en eventos prolongados. El sodio facilita reabsorción y estimula la sed.",d:"30–60 g CHO/h + 500–700 mg sodio/L"},
-  {id:2,g:"A",n:"Comidas líquidas (proteínas + CHO)",v:"✅ Útiles en recuperación, viajes y apetito suprimido.",s:"COI las clasifica como alimentos deportivos Grupo A. Suministran macro y micronutrientes cuando el acceso a alimentos sólidos es difícil. Facilitan la ventana anabólica post-entrenamiento.",d:"20–40 g proteína + CHO según demanda energética"},
-  {id:3,g:"A",n:"Proteína de suero (Whey)",v:"✅ Efectiva para hipertrofia y recuperación.",s:"Rica en leucina (~11%), activa mTOR y síntesis proteica muscular. Meta-análisis BJSM 2018 (n=1800+): aumenta masa y fuerza con entrenamiento de resistencia.",d:"20–40 g post-entrenamiento; 1.6–2.2 g/kg/día total"},
-  {id:4,g:"A",n:"Barras deportivas",v:"✅ Práctica, no mágica. Ventaja logística.",s:"CHO + proteína con composición controlada. AIS Grupo A por practicidad y efectividad.",d:"1 barra (30–50 g CHO) 1h antes o post-entrenamiento"},
-  {id:5,g:"A",n:"Probióticos",v:"✅ Reducen enfermedades en temporadas de carga alta.",s:"Huang et al. 2021: reducen incidencia de ITRS en atletas. Efecto dependiente de cepa y dosis.",d:"≥10⁹ UFC/día (ej. L. rhamnosus GG)"},
-  {id:6,g:"A",n:"Calcio, Hierro, Zinc",v:"✅ Solo si hay deficiencia confirmada por análisis.",s:"Alta prevalencia en atletas. Déficit de hierro deteriora VO₂max. Zinc afecta inmunidad. Sin déficit verificado no hay beneficio ergogénico.",d:"Según análisis. Hierro: 18–45 mg/día. Zinc: 8–11 mg/día"},
-  {id:7,g:"A",n:"Multivitamínico",v:"✅ Útil en dietas restrictivas.",s:"Sin efecto ergogénico en atletas bien nutridos. Beneficioso en déficit calórico (Woolf & Manore 2006).",d:"1 comprimido/día con dosis diaria recomendada. No megadosis."},
-  {id:8,g:"A",n:"Vitamina D",v:"✅ Suplementar si hay deficiencia (muy frecuente).",s:"Alta prevalencia de déficit en atletas. Roles en función muscular, inmunidad y salud ósea. Farrokhyar 2015: correlación con VO₂max.",d:"1.000–4.000 UI/día según niveles séricos basales"},
-  {id:9,g:"A",n:"Cafeína",v:"✅ Uno de los ergogénicos más efectivos. La respuesta varía según genética CYP1A2.",s:"Antagonista de adenosina. Grgic et al. 2020 (300+ estudios): mejora resistencia +2-4%, potencia y fuerza. NOVEDAD 2026: El gen CYP1A2 explica la variabilidad individual. Metabolizadores rápidos (AA) obtienen +6.8% con 4 mg/kg; lentos (CC) pueden empeorar un 13.7%. Si la cafeína no te funciona, puede ser genética.",d:"3–6 mg/kg, 45-60 min antes. Empezar con dosis bajas para evaluar respuesta individual.",new:true},
-  {id:10,g:"A",n:"Creatina monohidrato",v:"✅ Mayor evidencia para potencia, fuerza, hipertrofia y salud en el envejecimiento.",s:"+500 ensayos clínicos. Aumenta fosfocreatina muscular. Meta-análisis JISSN: +5-15% fuerza anaeróbica. NOVEDAD 2026: Evidencia sólida en mujeres posmenopáusicas y adultos mayores — mejora fuerza muscular y geometría ósea. Datos prometedores en diabetes tipo 2. Las dosis altas a largo plazo NO aumentan efectos secundarios vs placebo. Ya no es solo para atletas de potencia.",d:"3–5 g/día mantenimiento. Carga: 20 g/día x 5-7 días (opcional). Segura a largo plazo.",new:true},
-  {id:11,g:"A",n:"Bicarbonato de sodio",v:"✅ Efectivo en esfuerzos de alta intensidad.",s:"Tamponador extracelular de H⁺. Carr et al.: mejora ~2% en pruebas de 1-10 min. COI Grupo A con protocolo específico.",d:"0.2–0.3 g/kg, 60-90 min antes con abundante agua"},
-  {id:12,g:"A",n:"Glicerol",v:"⚠️ Útil en calor extremo. Legal desde 2018.",s:"Hiperhidratante. +600-700 mL retención de agua. Removido de lista WADA en 2018.",d:"1 g/kg + 26 mL/kg de líquido, 60-90 min antes"},
-  {id:13,g:"B",n:"Beta-alanina",v:"⚠️ Efectiva para esfuerzos de 1-4 min.",s:"Precursor de carnosina muscular. Hobson et al.: +2.85% en 60-240 s. COI la reconoce con evidencia sólida (AIS la tiene en B).",d:"3.2–6.4 g/día en dosis divididas durante ≥4 semanas"},
-  {id:14,g:"B",n:"Nitratos (remolacha/beetroot)",v:"⚠️ Más efectivo en atletas recreativos.",s:"Convierte a óxido nítrico, mejora eficiencia mitocondrial. Jones 2018: menor efecto en atletas de élite.",d:"~400 mg nitratos (~500 mL jugo de remolacha), 2-3 h antes"},
-  {id:15,g:"B",n:"Antioxidantes C y E",v:"⚠️ Contraindicados en uso crónico durante entrenamiento.",s:"Paradoja: las ROS son señales necesarias. Merry & Ristow 2016: bloquean adaptaciones al entrenamiento en uso crónico.",d:"Solo como corrección de deficiencia. Evitar megadosis crónicas."},
-  {id:16,g:"B",n:"Carnitina",v:"⚠️ Sin evidencia consistente en deportistas sanos.",s:"No aumenta niveles musculares significativamente con suplementación oral. Revisiones sistemáticas no muestran mejoras en rendimiento.",d:"Sin protocolo establecido"},
-  {id:17,g:"B",n:"HMB",v:"⚠️ Posible beneficio en personas no entrenadas.",s:"Metabolito de leucina. Evidencia mixta. Sin ventaja en atletas ya entrenados.",d:"3 g/día si se decide usar"},
-  {id:18,g:"B",n:"Aceites de pescado (Omega-3)",v:"⚠️ Prometedor para recuperación y salud general.",s:"Smith et al. 2011: 4 g EPA+DHA/día aumenta síntesis proteica muscular. Propiedades antiinflamatorias documentadas.",d:"2–4 g/día EPA+DHA combinados"},
-  {id:19,g:"B",n:"Polifenoles (frutas)",v:"⚠️ Útiles como alimento funcional para recuperación.",s:"Jugo de cereza Montmorency: reduce daño muscular post-ejercicio. Resultados reproducibles.",d:"Jugo de cereza: 30 mL concentrado 2x/día"},
-  {id:20,g:"B",n:"Estimulantes del sabor (Mentol)",v:"⚠️ Útil en deportes en ambientes calurosos.",s:"Activa receptores TRPM8 sin reducir temperatura central. Mejora percepción térmica y tolerancia al ejercicio en calor.",d:"Enjuague bucal con solución de mentol 0.01%"},
-  {id:21,g:"B",n:"Cúrcuma (curcumina)",v:"⚠️ Potencial antiinflamatorio limitado por biodisponibilidad.",s:"Inhibe NF-κB y COX-2. Biodisponibilidad oral extremadamente baja (<1%). Mejora con piperina.",d:"500-1000 mg/día de curcumina con piperina"},
-  {id:22,g:"B",n:"Cetonas exógenas",v:"⚠️ Sin evidencia suficiente. Alto costo.",s:"Evans et al. 2022: no mejoras consistentes en resistencia. En algunos estudios perjudican uso de glucógeno.",d:"Sin protocolo establecido"},
-  {id:23,g:"B",n:"Jugo de encurtidos (Pickle juice)",v:"⚠️ Evidencia emergente para calambres.",s:"Miller et al. 2010: reduce calambres en ~45%. Efecto neurológico, no osmótico.",d:"~80 mL ante calambres agudos"},
-  {id:24,g:"B",n:"NAC (N-Acetil Cisteína)",v:"⚠️ No recomendado en uso crónico.",s:"Precursor del glutatión. Puede interferir con adaptaciones al entrenamiento si se usa crónicamente.",d:"600-1800 mg en períodos específicos"},
-  {id:25,g:"B",n:"Pre/probióticos",v:"⚠️ Prometedores para salud intestinal.",s:"AIS Grupo B. Evidencia creciente eje intestino-rendimiento. Sin efecto ergogénico directo demostrado.",d:"Inulina: 5-10 g/día"},
-  {id:26,g:"B",n:"Colágeno",v:"⚠️ Evidencia 2026: útil para tendones bajo carga mecánica. No sirve para músculo.",s:"Shaw 2017: 15 g hidrolizado + vitamina C antes de ejercicio de impacto aumenta síntesis en tendones. NOVEDAD 2026: metaanálisis de 113 ensayos (~8.000 participantes) confirma que NO aumenta masa muscular ni previene lesiones en general. En jugadoras de élite de fútbol, 30 g 3x/semana + vitamina C aumentó rigidez del tendón rotuliano.",d:"15–30 g hidrolizado + vitamina C, 60 min antes del ejercicio de impacto",new:true},
-  {id:27,g:"C",n:"BCAA",v:"❌ Innecesarios con suficiente proteína de calidad.",s:"Wolfe 2017: BCAA solos son inferiores a proteína completa. Sin todos los aa esenciales. Mercadotecnia sobre ciencia.",d:"Mejor invertir en proteína completa (whey, huevo, carne)"},
-  {id:28,g:"C",n:"Cromo",v:"❌ Sin beneficio demostrado.",s:"Althuis 2002 (20+ ECA): sin efectos en glucosa, masa muscular ni composición corporal.",d:"No recomendado"},
-  {id:29,g:"C",n:"Coenzima Q10",v:"❌ Sin efecto ergogénico.",s:"CoQ10 muscular no aumenta con suplementación oral. Meta-análisis negativos en VO₂max.",d:"No recomendado"},
-  {id:30,g:"C",n:"Ginseng",v:"❌ Evidencia insuficiente.",s:"Bahrke & Morgan 2000: estudios de baja calidad. Sin evidencia de mejora aeróbica.",d:"No recomendado"},
-  {id:31,g:"C",n:"Glucosamina",v:"❌ Sin beneficio preventivo en articulaciones sanas.",s:"GAIT trial NEJM 2006 (n>1600): sin beneficio vs placebo en personas sin artritis severa.",d:"Solo en artrosis diagnosticada: 1500 mg/día"},
-  {id:32,g:"C",n:"Aceite MCT",v:"❌ No mejora rendimiento.",s:"En dosis efectivas causa malestar gastrointestinal severo. Sin mejora en resistencia.",d:"No recomendado"},
-  {id:33,g:"C",n:"Inosina",v:"❌ Sin efecto. Aumenta ácido úrico.",s:"Williams 1990: sin mejoras en VO₂max. Dosis altas: riesgo de gota.",d:"No recomendado"},
-  {id:34,g:"C",n:"Magnesio",v:"⚠️ Solo si hay déficit verificado.",s:"Sin deficiencia documentada: no hay beneficio ergogénico. Déficit frecuente y subclínico en atletas.",d:"Solo si déficit: 300-400 mg/día"},
-  {id:35,g:"C",n:"Ácido alfa-lipoico",v:"❌ Sin beneficio en deportistas sanos.",s:"AIS Grupo C. Sin evidencia de mejora en rendimiento deportivo en personas sanas.",d:"No recomendado"},
-  {id:36,g:"C",n:"Vitamina E (altas dosis)",v:"❌ Interfiere con adaptaciones al ejercicio.",s:"Ristow 2009 (PNAS): altas dosis previenen mejoras en sensibilidad insulínica post-ejercicio.",d:"Solo desde la dieta. No suplementar."},
-  {id:37,g:"C",n:"Fosfatos",v:"❌ Evidencia inconsistente.",s:"Estudios modernos no replican mejoras históricas en VO₂max.",d:"No recomendado"},
-  {id:38,g:"C",n:"Tirosina",v:"❌ Sin beneficio ergogénico en condiciones normales.",s:"Posible efecto cognitivo en privación de sueño. Sin mejoras consistentes en rendimiento físico.",d:"No recomendado"},
-  {id:39,g:"D",n:"Efedrina",v:"🚫 PROHIBIDA. Extremadamente peligrosa.",s:"150+ muertes en EE.UU. Infartos, ACV, arritmias. Prohibida FDA 2004 y WADA.",d:"PROHIBIDA"},
-  {id:40,g:"D",n:"Sibutramina",v:"🚫 Retirada del mercado. Causa infartos.",s:"Estudio SCOUT (NEJM): aumenta riesgo cardiovascular. Frecuente como adulterante ilegal en suplementos.",d:"PROHIBIDA"},
-  {id:41,g:"D",n:"Androstenediona",v:"🚫 PROHIBIDA WADA.",s:"King JAMA 1999: NO aumenta testosterona pero SÍ aumenta estradiol. Prohibida por WADA.",d:"PROHIBIDA"},
-  {id:42,g:"D",n:"Maca",v:"❌ Sin evidencia. Es marketing.",s:"Lee 2016: NO mejora testosterona ni rendimiento físico. AIS Grupo D.",d:"No recomendada"},
-  {id:43,g:"D",n:"DHEA",v:"🚫 PROHIBIDA WADA. Riesgo de positivo.",s:"Conversión a testosterona mínima en adultos jóvenes. Riesgo real de positivo en doping.",d:"PROHIBIDA en deporte competitivo"},
-  {id:44,g:"D",n:"SARMs (Ostarine, Ligandrol, Andarine)",v:"🚫 Ilegales para uso humano. PROHIBIDOS WADA.",s:"No aprobados por ninguna agencia. Hepatotoxicidad, supresión HPG. Frecuentes en suplementos.",d:"PROHIBIDOS"},
-  {id:45,g:"D",n:"GHRP-1 y 2 / Péptidos GH",v:"🚫 PROHIBIDOS WADA.",s:"Retención de líquidos, resistencia a insulina. No aprobados para uso en seres humanos sanos.",d:"PROHIBIDOS"},
-  {id:46,g:"D",n:"Higenamina",v:"🚫 PROHIBIDA WADA desde 2017.",s:"Frecuente en pre-workouts como ingrediente 'natural'. Alto riesgo de positivo inadvertido.",d:"PROHIBIDA"},
-  {id:47,g:"D",n:"Estricnina",v:"🚫 VENENO. Dosis letal ~1-2 mg/kg.",s:"Thomas Hicks, maratón olímpica 1904. Absolutamente prohibida.",d:"PROHIBIDA. TÓXICA."},
-  {id:48,g:"D",n:"Sinefrina",v:"🚫 PROHIBIDA WADA.",s:"Riesgo cardiovascular con cafeína. Común en quemadores de grasa.",d:"PROHIBIDA"},
+  {id:1,g:"A",n:"Bebidas deportivas y geles",v:"✅ Usar en deportes de resistencia >60 min. No necesario en ejercicios cortos.",
+   s:"Las bebidas deportivas aportan carbohidratos de rápida absorción (glucosa + fructosa en ratio 2:1) y electrolitos, principalmente sodio, durante el ejercicio prolongado. El sodio facilita la reabsorción intestinal de agua y estimula la sed, reduciendo el riesgo de hiponatremia.",
+   refs:["Burke L.M. et al., Journal of Sports Sciences, 2011","Jeukendrup A., Sports Medicine, 2014 — revisión de 60 estudios sobre CHO en resistencia","Maughan R.J. et al., COI Consensus Statement, British Journal of Sports Medicine, 2018"],
+   d:"30–60 g CHO/h en ejercicios >60 min · 500–700 mg sodio/L · Bebidas hipotónicas o isotónicas",nuevo:false},
+
+  {id:2,g:"A",n:"Comidas líquidas (proteínas + CHO)",v:"✅ Útiles en recuperación y cuando el apetito está suprimido post-ejercicio.",
+   s:"Los suplementos de macronutrientes en formato líquido (proteína + carbohidratos) facilitan la recuperación cuando el acceso a alimentos sólidos es difícil o el apetito está suprimido tras esfuerzos intensos. El COI los clasifica como alimentos deportivos con evidencia Grupo A.",
+   refs:["Burke L.M. et al., COI Consensus Statement, BJSM, 2018","Ivy J.L. & Portman R., Nutrient Timing, 2004 — ventana anabólica post-ejercicio"],
+   d:"20–40 g proteína + CHO según demanda energética · Consumir dentro de los 30-60 min post-ejercicio",nuevo:false},
+
+  {id:3,g:"A",n:"Proteína de suero (Whey)",v:"✅ Efectiva para hipertrofia y recuperación muscular.",
+   s:"La proteína de suero es rica en leucina (~10-11%), el aminoácido más potente para activar mTORC1 y la síntesis proteica muscular (MPS). Su digestión rápida la hace óptima para el periodo post-entrenamiento. No es superior a una dieta con suficiente proteína total proveniente de fuentes variadas.",
+   refs:["Morton R.W. et al., British Journal of Sports Medicine, 2018 — meta-análisis n=1800+ participantes","Tang J.E. et al., Journal of Applied Physiology, 2009 — comparación whey vs caseína vs soja","Phillips S.M. & Van Loon L.J.C., Journal of Sports Sciences, 2011"],
+   d:"20–40 g post-entrenamiento · 1.6–2.2 g/kg/día de proteína total · Distribuida en 3-4 tomas diarias",nuevo:false},
+
+  {id:4,g:"A",n:"Barras deportivas",v:"✅ Práctica, no mágica. Su ventaja es logística, no farmacológica.",
+   s:"Las barras deportivas son fuentes convenientes de CHO + proteína con composición controlada. Equivalentes a comida real en términos de respuesta glucémica e insulínica. Su ventaja real es la practicidad en contextos donde preparar alimentos no es posible (competencias, viajes, entrenamientos largos).",
+   refs:["Burke L.M. et al., COI Consensus Statement, BJSM, 2018","AIS Sports Supplement Framework, Grupo A — Sports Foods"],
+   d:"1 barra (30–50 g CHO) 1h antes o inmediatamente post-entrenamiento",nuevo:false},
+
+  {id:5,g:"A",n:"Probióticos",v:"✅ Reducen incidencia y duración de enfermedades en atletas con alta carga de entrenamiento.",
+   s:"Cepas específicas de Lactobacillus y Bifidobacterium han demostrado reducir la incidencia y duración de infecciones del tracto respiratorio superior (ITRS) en atletas. También mejoran la integridad de la barrera intestinal bajo estrés físico intenso. El efecto es dependiente de la cepa, la dosis y el contexto.",
+   refs:["Huang W.C. et al., Nutrients, 2021 — meta-análisis en atletas","West N.P. et al., British Journal of Nutrition, 2014 — L. fermentum y ITRS en corredores","Pyne D.B. et al., Journal of Science & Medicine in Sport, 2015"],
+   d:"≥10⁹ UFC/día de cepa específica · L. rhamnosus GG o L. fermentum VRI-003 son las más estudiadas",nuevo:false},
+
+  {id:6,g:"A",n:"Calcio, Hierro, Zinc",v:"✅ Suplementar solo si hay deficiencia confirmada por análisis de sangre.",
+   s:"Estos micronutrientes presentan alta prevalencia de deficiencia en atletas, especialmente en mujeres, vegetarianos y deportes de resistencia. La deficiencia de hierro deteriora el VO₂max y la capacidad oxidativa muscular. La deficiencia de zinc afecta la función inmune y la síntesis proteica. Sin déficit verificado, la suplementación no ofrece beneficio ergogénico.",
+   refs:["Peeling P. et al., British Journal of Sports Medicine, 2018 — hierro en atletas","Lukaski H.C., Nutrition, 2004 — zinc y rendimiento deportivo","Maughan R.J. et al., COI Consensus Statement, BJSM, 2018"],
+   d:"Solo con análisis de sangre positivo · Hierro: 18–45 mg/día · Zinc: 8–11 mg/día · Supervisión médica",nuevo:false},
+
+  {id:7,g:"A",n:"Multivitamínico",v:"✅ Útil como red de seguridad en dietas restrictivas o con déficit calórico.",
+   s:"La suplementación multivitamínica es beneficiosa cuando la ingesta dietética es insuficiente para cubrir los requerimientos de micronutrientes. En atletas bien nutridos con dieta variada no ofrece beneficio ergogénico adicional. Su uso está justificado en restricción calórica, dietas limitadas o periodos de viaje.",
+   refs:["Woolf K. & Manore M.M., Journal of Sports Sciences, 2006","Maughan R.J. et al., COI Consensus Statement, BJSM, 2018","AIS Sports Supplement Framework, Grupo A — Medical Supplements"],
+   d:"1 comprimido/día con dosis diaria recomendada · No megadosis · No reemplaza una dieta variada",nuevo:false},
+
+  {id:8,g:"A",n:"Vitamina D",v:"✅ Suplementar si hay deficiencia. Prevalencia de déficit muy alta en atletas.",
+   s:"La vitamina D presenta alta prevalencia de deficiencia en atletas de deportes de interior y en latitudes altas (incluida Argentina en invierno). Cumple roles críticos en función muscular, inmunidad, salud ósea y síntesis proteica. Niveles óptimos se asocian con menor riesgo de lesiones musculoesqueléticas.",
+   refs:["Farrokhyar F. et al., Sports Medicine, 2015 — prevalencia de déficit en atletas","Owens D.J. et al., Free Radical Biology and Medicine, 2018","Maughan R.J. et al., COI Consensus Statement, BJSM, 2018"],
+   d:"1.000–4.000 UI/día según niveles séricos · Objetivo: 40–60 ng/mL · Verificar con análisis cada 6 meses",nuevo:false},
+
+  {id:9,g:"A",n:"Cafeína",v:"✅ Uno de los ergogénicos más efectivos y estudiados. La respuesta varía según genética.",
+   s:"La cafeína actúa como antagonista de los receptores de adenosina en el SNC y el músculo esquelético, reduciendo la percepción de esfuerzo y la fatiga. Es efectiva en resistencia aeróbica, deportes de equipo, fuerza y deportes cognitivos. NOVEDAD 2026: el gen CYP1A2 (polimorfismo -163A>C) explica la variabilidad individual — metabolizadores rápidos (AA) obtienen +6.8% de rendimiento; lentos (CC) pueden empeorar un 13.7%.",
+   refs:["Grgic J. et al., BJSM, 2020 — meta-análisis de 300+ estudios","Guest N. et al., Journal of Nutrition, 2018 — CYP1A2 y rendimiento","Doherty M. & Smith P.M., Journal of Sports Sciences, 2005","Maughan R.J. et al., COI Consensus Statement, BJSM, 2018"],
+   d:"3–6 mg/kg peso corporal · 45–60 min antes del ejercicio · Empezar con dosis bajas para evaluar respuesta individual",nuevo:true},
+
+  {id:10,g:"A",n:"Creatina monohidrato",v:"✅ Mayor evidencia de todos los suplementos para potencia, fuerza e hipertrofia. También útil en salud y envejecimiento.",
+   s:"La creatina aumenta las reservas de fosfocreatina (PCr) muscular, mejorando la resíntesis de ATP durante esfuerzos explosivos de alta intensidad. Con más de 500 ensayos clínicos, es el suplemento más estudiado en la historia del deporte. NOVEDAD 2026: evidencia sólida en mujeres posmenopáusicas (mejora fuerza y geometría ósea), adultos mayores (combate sarcopenia), y diabetes tipo 2 (mejora HbA1c). Las dosis altas a largo plazo NO aumentan efectos secundarios vs placebo.",
+   refs:["Rawson E.S. & Volek J.S., Journal of Strength & Conditioning Research, 2003","Lanhers C. et al., European Journal of Sport Science, 2017 — meta-análisis fuerza","Candow D.G. et al., European Review of Aging & Physical Activity, 2026","Antonio J. et al., JISSN, 2024 — seguridad a largo plazo","Maughan R.J. et al., COI Consensus Statement, BJSM, 2018"],
+   d:"3–5 g/día (mantenimiento) · Carga: 20 g/día x 5-7 días (opcional, no necesaria) · Segura a largo plazo en personas sanas",nuevo:true},
+
+  {id:11,g:"A",n:"Bicarbonato de sodio",v:"✅ Efectivo en esfuerzos de alta intensidad de 1-10 minutos.",
+   s:"El bicarbonato de sodio actúa como agente alcalinizante extracelular, tamponando los iones H⁺ producidos durante el ejercicio anaeróbico intenso y retrasando la acidosis muscular. Es especialmente efectivo en deportes de 1-10 minutos de alta intensidad: natación, atletismo de media distancia, ciclismo en pista, deportes de combate.",
+   refs:["Carr A.J. et al., Sports Medicine, 2011 — meta-análisis de protocolos","Peart D.J. et al., Journal of Strength & Conditioning Research, 2012","Maughan R.J. et al., COI Consensus Statement, BJSM, 2018"],
+   d:"0.2–0.3 g/kg · 60–90 min antes con abundante agua y comida para reducir malestar GI · Probar en entrenamiento antes de competencia",nuevo:false},
+
+  {id:12,g:"A",n:"Glicerol",v:"⚠️ Útil para hiperhidratación en condiciones de calor extremo. Legal desde 2018.",
+   s:"El glicerol es un agente osmótico que, consumido antes del ejercicio con gran cantidad de líquido, aumenta la retención de agua corporal en 600-700 mL. Fue removido de la lista de sustancias prohibidas de WADA en 2018. Útil en deportes de resistencia en ambientes calurosos cuando la hidratación previa es difícil.",
+   refs:["Hitchins S. et al., European Journal of Applied Physiology, 1999","Montner P. et al., International Journal of Sports Medicine, 1996","AIS Sports Supplement Framework, Grupo A"],
+   d:"1 g/kg glicerol + 26 mL/kg de líquido · 60–90 min antes del ejercicio · Solo en condiciones de calor extremo",nuevo:false},
+
+  {id:13,g:"B",n:"Beta-alanina",v:"⚠️ Efectiva para esfuerzos de alta intensidad de 1-4 minutos.",
+   s:"La beta-alanina es precursora de carnosina muscular, un dipéptido que actúa como tampón intracelular de H⁺ durante el ejercicio de alta intensidad. Su suplementación crónica aumenta las reservas de carnosina muscular en 40-80%. Efecto secundario frecuente pero inofensivo: parestesias (hormigueo cutáneo) que desaparecen al dividir las dosis.",
+   refs:["Hobson R.M. et al., Amino Acids, 2012 — meta-análisis de 15 estudios (+2.85% en 60-240 s)","Saunders B. et al., British Journal of Sports Medicine, 2017","Maughan R.J. et al., COI Consensus Statement, BJSM, 2018 — evidencia reconocida"],
+   d:"3.2–6.4 g/día en dosis divididas de 0.8-1.6 g · Mínimo 4 semanas para efecto · Dosis divididas reducen parestesias",nuevo:false},
+
+  {id:14,g:"B",n:"Nitratos (remolacha/beetroot)",v:"⚠️ Efectivo en atletas recreativos y moderadamente entrenados. Menor efecto en élite.",
+   s:"Los nitratos dietéticos se convierten en óxido nítrico (NO) vía reducción bacteriana en la boca y el estómago. El NO mejora la eficiencia mitocondrial, la vasodilatación y reduce el costo de O₂ del ejercicio submáximo. El efecto es mayor en atletas con menor capacidad aeróbica y en altitud.",
+   refs:["Jones A.M., Applied Physiology, Nutrition and Metabolism, 2014","Hoon M.W. et al., European Journal of Sport Science, 2014","Dominguez R. et al., Nutrients, 2017 — revisión sistemática","Maughan R.J. et al., COI Consensus Statement, BJSM, 2018"],
+   d:"~400 mg nitratos inorgánicos · ~500 mL jugo de remolacha concentrado · 2-3 horas antes del ejercicio",nuevo:false},
+
+  {id:15,g:"B",n:"Antioxidantes C y E (altas dosis)",v:"⚠️ Contraindicados en uso crónico durante entrenamiento. Solo útiles ante déficit dietético.",
+   s:"Paradoja del entrenamiento: las especies reactivas de oxígeno (ROS) generadas durante el ejercicio son señales necesarias para desencadenar adaptaciones como la biogénesis mitocondrial y la sensibilidad a la insulina. Altas dosis crónicas de vitaminas C y E bloquean estas adaptaciones, produciendo el efecto contrario al deseado.",
+   refs:["Merry T.L. & Ristow M., Journal of Physiology, 2016 — revisión de paradoja antioxidante","Ristow M. et al., PNAS, 2009 — C+E bloquean adaptaciones metabólicas","Paulsen G. et al., Journal of Physiology, 2014"],
+   d:"Solo como corrección de deficiencia dietética verificada · Evitar megadosis crónicas durante periodos de entrenamiento · Priorizar fuentes alimentarias",nuevo:false},
+
+  {id:16,g:"B",n:"Carnitina",v:"⚠️ Insuficiente evidencia de beneficio ergogénico en deportistas sanos.",
+   s:"La L-carnitina transporta ácidos grasos de cadena larga a través de la membrana mitocondrial para su oxidación. Teóricamente, su suplementación debería mejorar la oxidación de grasas y preservar glucógeno. Sin embargo, la suplementación oral no logra aumentar significativamente los niveles musculares de carnitina en condiciones normales.",
+   refs:["Brass E.P., American Journal of Clinical Nutrition, 2000 — revisión crítica","Gnoni A. et al., Current Drug Metabolism, 2020","Fielding R. et al., Journal of Nutrition, 2021"],
+   d:"Sin protocolo de eficacia establecido · El AIS la mantiene en evaluación continua",nuevo:false},
+
+  {id:17,g:"B",n:"HMB (β-hidroxi β-metilbutirato)",v:"⚠️ Posible beneficio en personas no entrenadas o en recuperación. Sin ventaja en atletas entrenados.",
+   s:"El HMB es un metabolito de la leucina con posible efecto anticatabólico y anabólico. Las revisiones más recientes muestran beneficio principalmente en personas no entrenadas al inicio de un programa de ejercicio, en adultos mayores y en situaciones de atrofia muscular. Los estudios con atletas entrenados son inconsistentes y algunos presentan conflictos de interés.",
+   refs:["Wilson J.M. et al., Journal of Strength & Conditioning Research, 2014","Rowlands D.S. & Thomson J.S., Journal of Strength & Conditioning Research, 2009","Nissen S.L. & Sharp R.L., Journal of Applied Physiology, 2003"],
+   d:"3 g/día · Dividida en 3 tomas de 1 g · Posible beneficio en primeras 6-8 semanas de entrenamiento",nuevo:false},
+
+  {id:18,g:"B",n:"Aceites de pescado (Omega-3)",v:"⚠️ Prometedor para recuperación, reducción de inflamación y salud cardiovascular.",
+   s:"Los ácidos grasos EPA y DHA del aceite de pescado tienen propiedades antiinflamatorias bien documentadas. Estudios recientes sugieren mejoras en la síntesis proteica muscular, reducción del dolor muscular post-ejercicio (DOMS) y mejoras cognitivas. Los beneficios cardiovasculares e inmunológicos están bien establecidos.",
+   refs:["Smith G.I. et al., Clinical Science, 2011 — EPA+DHA y síntesis proteica muscular","Philpott J.D. et al., Nutrients, 2019 — omega-3 y rendimiento en deportes de equipo","Jouris K.B. et al., Journal of Sports Science & Medicine, 2011 — DOMS"],
+   d:"2–4 g/día de EPA+DHA combinados · Ratio EPA:DHA preferiblemente 2:1 · Con comida para mejorar absorción",nuevo:false},
+
+  {id:19,g:"B",n:"Polifenoles (frutas)",v:"⚠️ Útiles como alimento funcional para recuperación. El jugo de cereza ácida es el más estudiado.",
+   s:"Los polifenoles de frutas (quercetina, antocianinas, resveratrol) tienen propiedades antioxidantes y antiinflamatorias. El jugo de cereza ácida (Montmorency) es el más estudiado en contexto deportivo, mostrando reducción del daño muscular inducido por ejercicio, dolor muscular tardío y mejora de la calidad del sueño en atletas.",
+   refs:["Howatson G. et al., Scandinavian Journal of Medicine & Science in Sports, 2010 — cereza y recuperación","Bell P.G. et al., European Journal of Sport Science, 2014","Somerville V. et al., Nutrients, 2017 — revisión sistemática"],
+   d:"Jugo de cereza Montmorency: 30 mL concentrado 2x/día · Comenzar 4-5 días antes de competencia · Quercetina: 500-1000 mg/día",nuevo:false},
+
+  {id:20,g:"B",n:"Estimulantes del sabor (Mentol)",v:"⚠️ Estrategia sensorial emergente y de bajo costo para deportes en ambientes calurosos.",
+   s:"El enjuague bucal con mentol activa receptores TRPM8 de frío en la cavidad oral sin reducir la temperatura corporal central ni la piel. Esto mejora la percepción térmica y la tolerancia al ejercicio en condiciones de calor. La respuesta es rápida y no requiere ingesta, por lo que no afecta el rendimiento gastrointestinal.",
+   refs:["Stevens C.J. et al., European Journal of Applied Physiology, 2016","Barwood M.J. et al., International Journal of Sports Physiology and Performance, 2015","Flood T.R. et al., Frontiers in Physiology, 2017"],
+   d:"Enjuague bucal con solución de mentol 0.01% durante 5-10 segundos · Aplicar durante el ejercicio en condiciones de calor",nuevo:false},
+
+  {id:21,g:"B",n:"Cúrcuma (curcumina)",v:"⚠️ Potencial antiinflamatorio real pero limitado por biodisponibilidad oral.",
+   s:"La curcumina, principio activo de la cúrcuma, inhibe las vías NF-κB y COX-2 involucradas en la inflamación y el daño muscular. Estudios muestran reducción del dolor muscular post-ejercicio. El problema principal es su biodisponibilidad oral extremadamente baja (<1%), que mejora significativamente con formulaciones con piperina (ingrediente activo de la pimienta negra) o formulaciones liposomales.",
+   refs:["Drobnic F. et al., Journal of the International Society of Sports Nutrition, 2014","Nicol L.M. et al., European Journal of Applied Physiology, 2015","Hewlings S.J. & Kalman D.S., Foods, 2017 — revisión de biodisponibilidad"],
+   d:"500–1000 mg/día de curcumina estandarizada · Siempre con piperina (BioPerine) para mejorar absorción hasta 20x · Con comida que contenga grasa",nuevo:false},
+
+  {id:22,g:"B",n:"Cetonas exógenas",v:"⚠️ Sin evidencia suficiente que justifique su alto costo. En revisión continua.",
+   s:"Los suplementos de beta-hidroxibutirato (BHB) exógeno elevan los niveles de cuerpos cetónicos en sangre sin restricción de carbohidratos. La hipótesis es que proveen un combustible adicional para el músculo. Sin embargo, meta-análisis recientes no muestran mejoras consistentes en rendimiento de resistencia, y algunos estudios muestran que interfieren con el metabolismo del glucógeno.",
+   refs:["Evans M. et al., Journal of Physiology, 2022 — revisión crítica","Leckey J.J. et al., Cell Metabolism, 2017","Cox P.J. et al., Cell Metabolism, 2016 — estudio inicial positivo pero no replicado"],
+   d:"Sin protocolo de eficacia establecido · Costo elevado vs beneficio no demostrado · No recomendado actualmente",nuevo:false},
+
+  {id:23,g:"B",n:"Jugo de encurtidos (Pickle juice)",v:"⚠️ Evidencia emergente y específica para calambres musculares agudos.",
+   s:"El jugo de encurtidos mostró en estudios de Miller et al. que reduce la duración de calambres inducidos eléctricamente en ~45%, con un efecto demasiado rápido para ser explicado por un mecanismo osmótico. La hipótesis más aceptada es un reflejo neurológico oromotor que inhibe la actividad neuronal alfa-motora anormal. No hay evidencia para mejora del rendimiento general.",
+   refs:["Miller K.C. et al., Medicine & Science in Sports & Exercise, 2010","Miller K.C. et al., Journal of Athletic Training, 2010","Behringer M. et al., Journal of Strength & Conditioning Research, 2021"],
+   d:"~80 mL ante calambres agudos · No es necesario diluir · No usar como estrategia preventiva crónica",nuevo:false},
+
+  {id:24,g:"B",n:"NAC (N-Acetil Cisteína)",v:"⚠️ Potencialmente útil en recuperación aguda. No recomendado en uso crónico.",
+   s:"La N-Acetil Cisteína es precursora del glutatión, el principal antioxidante endógeno del organismo. Puede reducir la fatiga muscular en ciertos protocolos de ejercicio prolongado. Sin embargo, como todos los antioxidantes exógenos administrados crónicamente, puede interferir con las señales de adaptación al entrenamiento generadas por las ROS.",
+   refs:["Ferreira L.F. & Reid M.B., Journal of Physiology, 2008","McKenna M.J. et al., Journal of Physiology, 2006","Paulsen G. et al., Journal of Physiology, 2014 — antioxidantes y adaptaciones"],
+   d:"600–1800 mg/día · Solo en períodos específicos de alta carga o recuperación · No usar crónicamente durante entrenamiento sistemático",nuevo:false},
+
+  {id:25,g:"B",n:"Pre/probióticos",v:"⚠️ Prometedores para salud intestinal e inmunidad. Sin efecto ergogénico directo demostrado.",
+   s:"Los prebióticos (FOS, inulina, GOS) alimentan la microbiota beneficiosa intestinal. Combinados con probióticos en simbióticos, pueden optimizar el ecosistema intestinal. La evidencia sobre el eje microbiota-intestino-rendimiento está en rápido crecimiento, con datos sobre modulación inmune, absorción de nutrientes y producción de ácidos grasos de cadena corta.",
+   refs:["Clark A. & Mach N., Journal of the International Society of Sports Nutrition, 2016","Pyne D.B. et al., Journal of Science & Medicine in Sport, 2015","AIS Sports Supplement Framework, Grupo B — en investigación activa"],
+   d:"Inulina: 5–10 g/día · Probióticos: ≥10⁹ UFC/día de cepa específica · Mínimo 4 semanas para efecto sobre microbiota",nuevo:false},
+
+  {id:26,g:"B",n:"Colágeno",v:"⚠️ Evidencia 2026: útil para tendones bajo carga mecánica. Sin efecto para masa muscular.",
+   s:"El colágeno hidrolizado + vitamina C, tomado 60 minutos antes del ejercicio de impacto, aumenta los aminoácidos derivados del colágeno en circulación durante el periodo de síntesis tisular post-ejercicio. NOVEDAD 2026: un metaanálisis de 113 ensayos clínicos (~8.000 participantes, Anglia Ruskin University) confirma que NO aumenta masa muscular ni previene lesiones en general. Sí hay evidencia funcional para tendones y ligamentos bajo carga mecánica específica.",
+   refs:["Shaw G. et al., American Journal of Clinical Nutrition, 2017","Bischof K. et al., Systematic Review & Meta-Analysis, 2024","Anglia Ruskin University, Aesthetic Surgery Journal, 2026","Oikawa S.Y. et al., Journal of Physiology, 2020 — sin efecto en síntesis proteica muscular"],
+   d:"15–30 g de colágeno hidrolizado + 50 mg vitamina C · 60 min antes del ejercicio de impacto · 3-5 días/semana · No sustituye proteína muscular",nuevo:true},
+
+  {id:27,g:"C",n:"BCAA (Aminoácidos ramificados)",v:"❌ Innecesarios si se consume suficiente proteína de alta calidad. Mercadotecnia sobre ciencia.",
+   s:"Los BCAA (leucina, isoleucina y valina) estimulan la síntesis proteica muscular (MPS) a través de la activación de mTORC1. Sin embargo, la proteína completa es SUPERIOR a los BCAA aislados porque contiene todos los aminoácidos esenciales necesarios para la construcción de nuevas proteínas. Los BCAA solos no pueden sostener la MPS de forma sostenida.",
+   refs:["Wolfe R.R., Journal of the International Society of Sports Nutrition, 2017 — crítica a BCAAs","Morton R.W. et al., BJSM, 2018 — proteína total vs aislados","Churchward-Venne T.A. et al., Journal of Physiology, 2012"],
+   d:"No recomendado · Mejor invertir en proteína completa de alta calidad (whey, huevo, carne, legumbres + cereal)",nuevo:false},
+
+  {id:28,g:"C",n:"Cromo",v:"❌ Sin beneficio demostrado en atletas sanos. Evidencia negativa consistente.",
+   s:"El cromo trivalente fue promovido como potenciador de la sensibilidad a la insulina y mejorador de la composición corporal. Revisiones sistemáticas exhaustivas con más de 20 ensayos clínicos controlados no encontraron efectos significativos en glucosa, masa muscular, fuerza ni grasa corporal en personas sanas.",
+   refs:["Althuis M.D. et al., American Journal of Clinical Nutrition, 2002 — revisión de 20+ ECA","Vincent J.B., Sports Medicine, 2003 — revisión crítica","Trow L.G. et al., Metabolism, 2000"],
+   d:"No recomendado · Sin protocolo de eficacia establecido",nuevo:false},
+
+  {id:29,g:"C",n:"Coenzima Q10",v:"❌ Sin efecto ergogénico en deportistas sanos. Posible utilidad clínica en enfermedades específicas.",
+   s:"La CoQ10 es un componente esencial de la cadena de transporte de electrones mitocondrial. La hipótesis es que suplementarla mejoraría la producción de ATP. Sin embargo, los niveles musculares de CoQ10 no aumentan significativamente con la suplementación oral en personas sanas, y los meta-análisis no muestran mejoras en VO₂max ni rendimiento.",
+   refs:["Rosenfeldt F.L. et al., Biofactors, 2003","Gökbel H. et al., Journal of Sports Medicine and Physical Fitness, 2010","Bonetti A. et al., Journal of Sports Medicine and Physical Fitness, 2000"],
+   d:"No recomendado para rendimiento deportivo · Posible utilidad clínica en insuficiencia cardíaca o miopatías",nuevo:false},
+
+  {id:30,g:"C",n:"Ginseng",v:"❌ Evidencia científica insuficiente como ergogénico.",
+   s:"El ginseng (Panax ginseng y Panax quinquefolius) se ha usado en medicina tradicional como adaptógeno. Los estudios en atletas presentan baja calidad metodológica, muestras pequeñas, productos no estandarizados y resultados contradictorios. Revisiones sistemáticas no encuentran evidencia suficiente de mejora en rendimiento aeróbico o fuerza.",
+   refs:["Bahrke M.S. & Morgan W.P., Sports Medicine, 2000 — revisión sistemática","Liang M.T. et al., International Journal of Sport Nutrition and Exercise Metabolism, 2005","AIS Sports Supplement Framework, Grupo C"],
+   d:"No recomendado como ergogénico · Interacciones medicamentosas posibles (anticoagulantes, antidiabéticos)",nuevo:false},
+
+  {id:31,g:"C",n:"Glucosamina",v:"❌ Sin beneficio preventivo en articulaciones sanas. Posible efecto limitado en artrosis establecida.",
+   s:"La glucosamina es un componente del cartílago articular. Se promovió ampliamente para la salud articular en atletas. El ensayo clínico GAIT (NEJM, 2006) con más de 1600 participantes no mostró beneficio significativo vs placebo en personas sin artritis severa. No hay evidencia de prevención de lesiones articulares en deportistas sanos.",
+   refs:["Clegg D.O. et al. (GAIT Trial), New England Journal of Medicine, 2006","McAlindon T.E. et al., JAMA, 2000 — meta-análisis","Wandel S. et al., BMJ, 2010 — meta-análisis de alta calidad"],
+   d:"No recomendado en profilaxis · 1500 mg/día solo si hay artrosis ya diagnosticada · Mínimo 3 meses para evaluar efecto",nuevo:false},
+
+  {id:32,g:"C",n:"Aceite MCT",v:"❌ No mejora el rendimiento. En dosis efectivas causa malestar gastrointestinal severo.",
+   s:"Los triglicéridos de cadena media (MCT) se oxidan más rápidamente que los de cadena larga y pueden usarse como fuente de energía sin requerir carnitina. La hipótesis es que ahorrarían glucógeno muscular. Ensayos bien diseñados muestran que no mejoran el rendimiento de resistencia y que en dosis suficientes para tener efecto causan malestar GI severo que contrarresta cualquier beneficio potencial.",
+   refs:["Van Zyl C.G. et al., Journal of Applied Physiology, 1996","Jeukendrup A.E. et al., International Journal of Sports Medicine, 1998","Angus D.J. et al., European Journal of Applied Physiology, 2000"],
+   d:"No recomendado como ergogénico · Malestar GI limita dosis efectivas",nuevo:false},
+
+  {id:33,g:"C",n:"Inosina",v:"❌ Sin efecto en rendimiento. Potencialmente perjudicial en dosis altas.",
+   s:"La inosina es un precursor de las purinas y teóricamente aumentaría la disponibilidad de ATP. Estudios de Williams et al. con ciclistas no mostraron mejoras en VO₂max, potencia ni rendimiento en contrarreloj. En dosis altas, aumenta los niveles de ácido úrico, lo que representa un riesgo de gota en personas predispuestas.",
+   refs:["Williams M.H. et al., Medicine & Science in Sports & Exercise, 1990","McNaughton L. et al., Nutrition Research, 1999","Starling R.D. et al., Medicine & Science in Sports & Exercise, 1996"],
+   d:"No recomendado · Sin beneficio demostrado · Riesgo de hiperuricemia en dosis altas",nuevo:false},
+
+  {id:34,g:"C",n:"Magnesio",v:"⚠️ Solo suplementar si hay déficit confirmado. Muchos atletas tienen deficiencia subclínica.",
+   s:"El magnesio participa en más de 300 reacciones enzimáticas incluyendo la síntesis de ATP, la contracción muscular y la síntesis proteica. La deficiencia documentada sí deteriora el rendimiento. Sin embargo, la suplementación en atletas con niveles normales NO mejora el rendimiento. Muchos atletas tienen deficiencia subclínica no detectada por análisis de sangre convencional (el magnesio sérico no refleja los niveles tisulares).",
+   refs:["Nielsen F.H. & Lukaski H.C., Magnesium Research, 2006","Bohl C.H. & Volpe S.L., Critical Reviews in Food Science and Nutrition, 2002","Reno A.M. et al., Journal of the International Society of Sports Nutrition, 2022"],
+   d:"Solo si hay déficit confirmado: 300–400 mg/día de magnesio elemental · Formas más absorbibles: glicinato, malato, citrato",nuevo:false},
+
+  {id:35,g:"C",n:"Ácido alfa-lipoico",v:"❌ Sin beneficio demostrado en deportistas sanos.",
+   s:"El ácido alfa-lipoico (ALA) es un antioxidante con funciones en el metabolismo energético mitocondrial. Se investigó como potenciador del rendimiento y modulador de la sensibilidad a la insulina. No hay evidencia de mejora en rendimiento deportivo en personas sanas. Su efecto antioxidante crónico puede interferir con las adaptaciones al entrenamiento.",
+   refs:["AIS Sports Supplement Framework, Grupo C","Burke L.M. et al., COI Consensus Statement, BJSM, 2018","Merry T.L. & Ristow M., Journal of Physiology, 2016"],
+   d:"No recomendado como ergogénico · Sin protocolo de eficacia en deportistas sanos",nuevo:false},
+
+  {id:36,g:"C",n:"Vitamina E (altas dosis)",v:"❌ Contraindicada en dosis altas durante entrenamiento. Interfiere con adaptaciones al ejercicio.",
+   s:"La vitamina E en dosis farmacológicas actúa como antioxidante potente. El estudio de Ristow et al. (PNAS, 2009) demostró que la suplementación con vitaminas C+E previene las mejoras en sensibilidad a la insulina inducidas por el ejercicio, bloqueando la señalización redox. Efecto paradójico: el antioxidante produce el efecto contrario al deseado.",
+   refs:["Ristow M. et al., PNAS, 2009 — estudio seminal sobre paradoja antioxidante","Paulsen G. et al., Journal of Physiology, 2014","Merry T.L. & Ristow M., Journal of Physiology, 2016"],
+   d:"Solo desde la dieta (aceites vegetales, frutos secos, semillas) · No suplementar durante periodos de entrenamiento sistemático",nuevo:false},
+
+  {id:37,g:"C",n:"Fosfatos",v:"❌ Evidencia inconsistente. No recomendado actualmente.",
+   s:"Los suplementos de fosfato de sodio o calcio aumentan el 2,3-DPG eritrocitario, mejorando teóricamente la liberación de O₂ a los tejidos. Resultados históricos de los años 80-90 fueron prometedores. Sin embargo, estudios modernos con mejor metodología (doble ciego, crossover, control placebo) no replican consistentemente las mejoras en VO₂max reportadas inicialmente.",
+   refs:["Kreider R.B. et al., International Journal of Sport Nutrition, 1992","Brewer C.P. et al., Journal of Sports Sciences, 2013","Folland J.P. et al., British Journal of Sports Medicine, 2008"],
+   d:"No recomendado · Evidencia insuficiente para justificar su uso",nuevo:false},
+
+  {id:38,g:"C",n:"Tirosina",v:"❌ Sin beneficio ergogénico demostrado en condiciones normales.",
+   s:"La tirosina es precursora de dopamina y noradrenalina. La hipótesis es que su suplementación mejoraría el rendimiento cognitivo y físico bajo estrés al reponer los neurotransmisores catecolamínicos. Algunos estudios muestran cierto beneficio cognitivo en condiciones de privación de sueño o frío extremo, pero revisiones sistemáticas en atletas no muestran mejoras consistentes en rendimiento físico en condiciones normales.",
+   refs:["Costill D.L. et al., International Journal of Sports Medicine, 1988","Tumilty L. et al., International Journal of Sport Nutrition and Exercise Metabolism, 2011","Pihl E. et al., Acta Physiologica Scandinavica, 1993"],
+   d:"No recomendado para rendimiento deportivo estándar · Sin protocolo de eficacia establecido",nuevo:false},
+
+  {id:39,g:"D",n:"Efedrina",v:"🚫 PROHIBIDA. Extremadamente peligrosa. Más de 150 muertes documentadas en EE.UU.",
+   s:"La efedrina es un alcaloide simpaticomimético que estimula receptores alfa y beta adrenérgicos. Produce efectos cardiovasculares graves: hipertensión, taquicardia, arritmias, infarto de miocardio y accidentes cerebrovasculares. La FDA documentó más de 150 muertes vinculadas a su uso como suplemento deportivo antes de su prohibición en 2004. Prohibida por WADA desde 2004.",
+   refs:["FDA, 2004 — prohibición por riesgo de muerte","Haller C.A. & Benowitz N.L., New England Journal of Medicine, 2000 — eventos adversos","Shekelle P.G. et al., Annals of Internal Medicine, 2003 — revisión de 52 muertes"],
+   d:"PROHIBIDA — No usar bajo ninguna circunstancia · Prohibida FDA 2004 · Prohibida WADA",nuevo:false},
+
+  {id:40,g:"D",n:"Sibutramina",v:"🚫 Retirada del mercado mundial en 2010. Causa infartos y ACV.",
+   s:"La sibutramina fue un inhibidor de la recaptación de serotonina y noradrenalina originalmente aprobado para obesidad. El estudio SCOUT (NEJM, 2010) con más de 10.000 pacientes mostró un aumento significativo del riesgo cardiovascular (infarto, ACV, muerte). Retirada del mercado mundial en 2010. Frecuentemente encontrada como adulterante ilegal en 'suplementos' para bajar de peso.",
+   refs:["James W.P. et al. (SCOUT Trial), New England Journal of Medicine, 2010","ANMAT, INVIMA, FDA — alertas de adulteración en suplementos 2015-2024","AIS Sports Supplement Framework, Grupo D"],
+   d:"PROHIBIDA · Retirada del mercado · Verificar ingredientes en suplementos para bajar de peso",nuevo:false},
+
+  {id:41,g:"D",n:"Androstenediona",v:"🚫 PROHIBIDA WADA. No efectiva y con efectos secundarios significativos.",
+   s:"La androstenediona es una prohormona que se convierte en testosterona y estradiol. Popularizada por Mark McGwire en los años 90. El estudio de King et al. (JAMA, 1999) demostró que NO aumenta los niveles de testosterona significativamente pero SÍ aumenta el estradiol, produciendo efectos de feminización. Prohibida por WADA y convertida en sustancia controlada en EE.UU.",
+   refs:["King D.S. et al., JAMA, 1999 — estudio definitivo con n=20 levantadores","Broeder C.E. et al., JAMA, 2000 — confirmación de resultados","AIS Sports Supplement Framework, Grupo D"],
+   d:"PROHIBIDA · Sin beneficio demostrado · Efectos feminizantes documentados",nuevo:false},
+
+  {id:42,g:"D",n:"Maca (Lepidium meyenii)",v:"❌ Sin evidencia de beneficio en rendimiento. Es marketing, no ciencia.",
+   s:"La maca es una raíz andina con afirmaciones de mejorar la libido, la energía y el rendimiento deportivo. Revisiones sistemáticas con ensayos clínicos de calidad muestran que NO mejora los niveles de testosterona ni el rendimiento físico en atletas. Los efectos sobre la libido reportados son subjetivos, inconsistentes y sin mecanismo claro. El AIS la clasifica en Grupo D.",
+   refs:["Lee M.S. et al., Maturitas, 2011 — revisión sistemática de ECA","Shin B.C. et al., Maturitas, 2010","AIS Sports Supplement Framework, Grupo D"],
+   d:"No recomendada · Sin evidencia científica de calidad · Riesgo de contaminación con sustancias prohibidas",nuevo:false},
+
+  {id:43,g:"D",n:"DHEA (Dehidroepiandrosterona)",v:"🚫 PROHIBIDA WADA. Riesgo real de positivo en doping.",
+   s:"La DHEA es una hormona esteroide precursora de testosterona y estrógenos producida por las glándulas suprarrenales. En adultos jóvenes, la conversión a testosterona tras suplementación es mínima e inconsistente. Prohibida por WADA. Riesgo documentado de dar positivo en control antidoping. En adultos mayores puede tener usos clínicos bajo supervisión médica.",
+   refs:["Brown G.A. et al., European Journal of Applied Physiology, 2006","Percheron G. et al., Archives of Internal Medicine, 2003","AIS Sports Supplement Framework, Grupo D — prohibida WADA"],
+   d:"PROHIBIDA en deporte competitivo · Riesgo de positivo en doping · Solo bajo supervisión médica en contexto clínico específico",nuevo:false},
+
+  {id:44,g:"D",n:"SARMs (Ostarine, Ligandrol, Andarine, RAD-140)",v:"🚫 Ilegales para uso humano. PROHIBIDOS WADA. Frecuentes en suplementos comerciales.",
+   s:"Los SARMs (Moduladores Selectivos del Receptor de Andrógenos) son compuestos farmacéuticos experimentales diseñados para condiciones como sarcopenia y caquexia. Son potentes anabolizantes con efectos secundarios graves documentados: supresión del eje HPG, hepatotoxicidad, dislipemia y riesgo cardiovascular. NO aprobados por FDA, EMA ni ninguna agencia regulatoria para uso humano. Frecuentemente detectados como adulterantes en suplementos comerciales 'legales'.",
+   refs:["Thevis M. et al., Drug Testing and Analysis, 2019 — detección en suplementos","Cadwallader A.B. et al., Drug Testing and Analysis, 2020","FDA Warning Letters — SARMs en suplementos 2017-2024","WADA Prohibited List, 2024 — Clase S1"],
+   d:"PROHIBIDOS · Ilegales para uso humano · Alto riesgo de positivo inadvertido en suplementos · Graves efectos secundarios",nuevo:false},
+
+  {id:45,g:"D",n:"GHRP-1 y 2 / Péptidos liberadores de GH",v:"🚫 PROHIBIDOS WADA. Riesgos de salud significativos.",
+   s:"Los péptidos GHRP-1, GHRP-2 y similares (CJC-1295, Ipamorelin) son secretagogos de la hormona de crecimiento que estimulan su liberación desde la hipófisis. Efectos secundarios documentados: retención severa de líquidos, resistencia a la insulina, síndrome del túnel carpiano, posible riesgo de proliferación celular. No aprobados para uso en personas sanas.",
+   refs:["Teichman S.L. et al., Journal of Clinical Endocrinology & Metabolism, 2006","WADA Prohibited List, 2024 — Clase S2 Péptidos Hormonales","World Anti-Doping Agency, technical documents"],
+   d:"PROHIBIDOS · No aprobados para uso en seres humanos sanos · Graves efectos secundarios potenciales",nuevo:false},
+
+  {id:46,g:"D",n:"Higenamina",v:"🚫 PROHIBIDA WADA desde 2017. Alto riesgo de positivo inadvertido.",
+   s:"La higenamina es un alcaloide de origen vegetal (presente en Nandina domestica, Aconitum) con actividad beta-2 adrenérgica. Aparece frecuentemente en 'pre-workouts' comerciales como ingrediente de origen 'natural'. Prohibida por WADA desde 2017 por sus efectos estimulantes sobre el sistema cardiovascular. Múltiples atletas olímpicos y de alto rendimiento han sido suspendidos por positivos inadvertidos.",
+   refs:["WADA Prohibited List, 2017 — inclusión como beta-2 agonista","Cohen P.A. et al., JAMA Internal Medicine, 2016 — detección en suplementos","Tucker J. et al., Drug Testing and Analysis, 2018"],
+   d:"PROHIBIDA · Verificar etiquetas de pre-workouts · Usar solo suplementos certificados por Informed Sport o HASTA",nuevo:false},
+
+  {id:47,g:"D",n:"Estricnina",v:"🚫 VENENO. Dosis letal ~1-2 mg/kg. Solo en la historia del doping.",
+   s:"La estricnina es un alcaloide antagonista de los receptores de glicina con efectos estimulantes del SNC. Históricamente usada en 'tónicos' deportivos de finales del siglo XIX y principios del XX. Thomas Hicks la utilizó en la maratón olímpica de St. Louis 1904 bajo supervisión de su entrenador. La dosis letal es de aproximadamente 1-2 mg/kg. Absolutamente prohibida.",
+   refs:["Park R.J., Journal of Sport History, 1987 — historia del doping","Hoberman J., Mortal Engines, 1992 — historia del doping deportivo","WADA Prohibited List — estimulantes prohibidos"],
+   d:"PROHIBIDA · TÓXICA · Solo relevante como curiosidad histórica del doping",nuevo:false},
+
+  {id:48,g:"D",n:"Sinefrina (naranja amarga)",v:"🚫 PROHIBIDA WADA. Riesgo cardiovascular documentado.",
+   s:"La sinefrina es el principio activo de la naranja amarga (Citrus aurantium), introducida como sustituto 'natural' de la efedrina tras su prohibición. Tiene efectos adrenérgicos similares pero más moderados. Su riesgo cardiovascular está documentado, especialmente cuando se combina con cafeína (combinación frecuente en quemadores de grasa). Prohibida por WADA.",
+   refs:["Stohs S.J. et al., Phytotherapy Research, 2011 — revisión de seguridad","Jordan S. et al., Drug Testing and Analysis, 2014 — detección en suplementos","WADA Prohibited List — estimulantes prohibidos en competencia"],
+   d:"PROHIBIDA en competencia · Común en 'quemadores de grasa' · Riesgo cardiovascular especialmente con cafeína",nuevo:false},
 ];
 
-let currentFilter="ALL", currentView="table", currentSupp=null, aiText=null, aiLoading=false;
+let currentFilter="ALL", currentView="table", currentSupp=null;
 
 function getFiltered(){return currentFilter==="ALL"?SUPPLEMENTS:SUPPLEMENTS.filter(s=>s.g===currentFilter);}
 
@@ -258,7 +444,7 @@ async function doRegister(){
     const hora=now.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"});
     const params=new URLSearchParams({action:"write",fecha,hora,nombre,apellido,ciudad});
     await fetch(SHEET_URL+"?"+params,{method:"GET",mode:"no-cors"});
-  }catch(e){console.log("Sheet error:",e);}
+  }catch(e){console.log("Sheet:",e);}
   document.getElementById("reg-screen").style.display="none";
   document.getElementById("main-app").style.display="block";
   loadVisitCount();
@@ -271,14 +457,15 @@ async function loadVisitCount(){
   try{
     const res=await fetch(SHEET_URL+"?action=read");
     const rows=await res.json();
-    const count=Math.max(0,rows.length-1);
-    document.getElementById("visit-count").textContent=count+" registros";
-  }catch{document.getElementById("visit-count").textContent="ver registros";}
+    document.getElementById("visit-count").textContent=Math.max(0,rows.length-1)+" registros";
+  }catch{document.getElementById("visit-count").textContent="registros";}
 }
 
 async function openStats(){
   document.getElementById("stats-overlay").style.display="flex";
-  document.getElementById("stats-panel").innerHTML=`<div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.07em;color:#6366f1;margin-bottom:4px">Registro de Visitas</div><div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem">Cargando datos...</div><div style="display:flex;flex-direction:column;gap:8px">${[1,2,3].map(()=>`<div style="height:40px;background:rgba(255,255,255,0.04);border-radius:8px;animation:shimmer 1.4s infinite"></div>`).join("")}</div>`;
+  document.getElementById("stats-panel").innerHTML=`
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.07em;color:#6366f1;margin-bottom:1rem">Registro de Visitas</div>
+    <div style="display:flex;flex-direction:column;gap:8px">${[1,2,3].map(()=>`<div style="height:40px;background:rgba(255,255,255,0.04);border-radius:8px;animation:shimmer 1.4s infinite"></div>`).join("")}</div>`;
   try{
     const res=await fetch(SHEET_URL+"?action=read");
     const rows=await res.json();
@@ -287,12 +474,11 @@ async function openStats(){
     document.getElementById("stats-panel").innerHTML=`
       <button onclick="closeStats()" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.07);border:none;color:#888;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:14px">✕</button>
       <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.07em;color:#6366f1;margin-bottom:4px">Registro de Visitas</div>
-      <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem">Datos en tiempo real · Google Sheets</div>
+      <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem">Datos en tiempo real</div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:1rem">
-        ${[{l:"Total",v:data.length,i:"👥"},{l:"Ciudades",v:ciudades,i:"🌎"},{l:"Último",v:data[data.length-1]?.hora||"—",i:"🕐"}].map(c=>`<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px;text-align:center"><div style="font-size:1.2rem">${c.i}</div><div style="font-size:1.4rem;font-weight:700;color:#6366f1;font-family:'Bebas Neue',sans-serif">${c.v}</div><div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.04em;margin-top:2px">${c.l}</div></div>`).join("")}
+        ${[{l:"Total",v:data.length,i:"👥"},{l:"Ciudades",v:ciudades,i:"🌎"},{l:"Último",v:data[data.length-1]?.hora||"—",i:"🕐"}].map(c=>`<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px;text-align:center"><div style="font-size:1.2rem">${c.i}</div><div style="font-size:1.4rem;font-weight:700;color:#6366f1;font-family:'Bebas Neue',sans-serif">${c.v}</div><div style="font-size:10px;color:#555;text-transform:uppercase;margin-top:2px">${c.l}</div></div>`).join("")}
       </div>
-      <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Listado (${data.length} personas)</div>
-      <div style="border:1px solid rgba(255,255,255,0.06);border-radius:10px;overflow:hidden;max-height:280px;overflow-y:auto">
+      <div style="border:1px solid rgba(255,255,255,0.06);border-radius:10px;overflow:hidden;max-height:300px;overflow-y:auto">
         <table style="width:100%;border-collapse:collapse">
           <thead><tr style="background:rgba(255,255,255,0.04)">${["#","Nombre","Apellido","Ciudad","Fecha","Hora"].map(h=>`<th style="padding:6px 10px;text-align:left;font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.05em;border-bottom:1px solid rgba(255,255,255,0.06);font-weight:600">${h}</th>`).join("")}</tr></thead>
           <tbody>${[...data].reverse().map((r,i)=>`<tr style="border-bottom:1px solid rgba(255,255,255,0.04)">
@@ -305,7 +491,7 @@ async function openStats(){
           </tr>`).join("")}</tbody>
         </table>
       </div>`;
-  }catch{document.getElementById("stats-panel").innerHTML+="<div style='color:#ef4444;font-size:13px;margin-top:1rem'>Error al cargar datos. Verificá que el script esté publicado.</div>";}
+  }catch{document.getElementById("stats-panel").innerHTML+=`<div style="color:#ef4444;font-size:13px;margin-top:1rem">Error al cargar datos.</div>`;}
 }
 
 function closeStats(){document.getElementById("stats-overlay").style.display="none";}
@@ -335,18 +521,22 @@ function setView(v,btn){
 }
 
 function renderNews(){
-  document.getElementById("tab-news").innerHTML=`
-    <div style="font-size:11px;color:#555;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1rem">${NEWS.length} entradas · Fuentes: PubMed · AIS Framework · COI · ISSN</div>
-    ${NEWS.map(n=>`<div style="background:#14141c;border:1px solid rgba(255,255,255,0.06);border-left:3px solid ${n.tc};border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:1rem;animation:fadeIn 0.3s ease">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
-        <span style="background:${n.tc}20;color:${n.tc};border:1px solid ${n.tc}40;border-radius:5px;padding:2px 8px;font-size:10px;font-weight:700;letter-spacing:0.07em">${n.tag}</span>
-        <span style="font-size:11px;color:#555">${n.date}</span>
-        <span style="font-size:11px;color:#444;margin-left:auto">${n.supp}</span>
+  document.getElementById("tab-news").innerHTML=NEWS.map(periodo=>`
+    <div style="margin-bottom:2rem">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem;padding-bottom:8px;border-bottom:1px solid rgba(99,102,241,0.3)">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:#6366f1;letter-spacing:0.06em">${periodo.date}</span>
+        <span style="font-size:11px;color:#555;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2);border-radius:5px;padding:2px 8px">${periodo.items.length} entradas</span>
       </div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.04em;color:#e2e2ea;margin-bottom:8px;line-height:1.2">${n.title}</div>
-      <div style="font-size:13px;line-height:1.7;color:#888">${n.body}</div>
-      <div style="margin-top:10px;font-size:10px;color:#444;border-top:1px solid rgba(255,255,255,0.05);padding-top:8px">📚 ${n.source}</div>
-    </div>`).join("")}`;
+      ${periodo.items.map(n=>`<div style="background:#14141c;border:1px solid rgba(255,255,255,0.06);border-left:3px solid ${n.tc};border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:0.8rem">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+          <span style="background:${n.tc}20;color:${n.tc};border:1px solid ${n.tc}40;border-radius:5px;padding:2px 8px;font-size:10px;font-weight:700;letter-spacing:0.07em">${n.tag}</span>
+          <span style="font-size:11px;color:#444">${n.supp}</span>
+        </div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.04em;color:#e2e2ea;margin-bottom:8px;line-height:1.2">${n.title}</div>
+        <div style="font-size:13px;line-height:1.7;color:#888;margin-bottom:8px">${n.body}</div>
+        <div style="font-size:10px;color:#444;border-top:1px solid rgba(255,255,255,0.05);padding-top:8px">📚 ${n.source}</div>
+      </div>`).join("")}
+    </div>`).join("");
 }
 
 function renderSupps(){
@@ -357,8 +547,8 @@ function renderSupps(){
       <thead><tr><th>Grupo</th><th>Suplemento</th><th>Veredicto</th><th></th></tr></thead>
       <tbody>${filtered.map(s=>{const grp=GROUPS[s.g];return`<tr onclick="openSupp(${s.id})">
         <td style="border-left:3px solid ${grp.c};padding-left:10px"><span class="badge ${grp.cl}">${s.g}</span></td>
-        <td style="font-weight:500">${s.n}${s.new?` <span style="font-size:10px;background:#6366f120;color:#6366f1;border-radius:4px;padding:1px 5px;border:1px solid #6366f140;margin-left:4px">NUEVO</span>`:""}` +`</td>
-        <td style="color:#888;font-size:13px;max-width:250px">${s.v.slice(0,50)}...</td>
+        <td style="font-weight:500">${s.n}${s.nuevo?` <span style="font-size:10px;background:#6366f120;color:#6366f1;border-radius:4px;padding:1px 5px;border:1px solid #6366f140;margin-left:4px">NUEVO</span>`:""}</td>
+        <td style="color:#888;font-size:13px">${s.v.slice(0,50)}...</td>
         <td style="color:${grp.c};font-size:13px;font-weight:600">Ver →</td>
       </tr>`;}).join("")}</tbody>
     </table></div>`;
@@ -375,8 +565,8 @@ function renderSupps(){
         </div>
         ${items.map(s=>`<div class="row" onclick="openSupp(${s.id})" style="border-left:3px solid ${grp.c}">
           <div style="flex:1">
-            <div style="font-size:14px;font-weight:500">${s.n}${s.new?` <span style="font-size:10px;background:#6366f120;color:#6366f1;border-radius:4px;padding:1px 5px;border:1px solid #6366f140">NUEVO</span>`:""}</div>
-            <div style="font-size:12px;color:#666;margin-top:2px">${s.v.slice(0,55)}...</div>
+            <div style="font-size:14px;font-weight:500">${s.n}${s.nuevo?` <span style="font-size:10px;background:#6366f120;color:#6366f1;border-radius:4px;padding:1px 5px;border:1px solid #6366f140">NUEVO</span>`:""}</div>
+            <div style="font-size:12px;color:#666;margin-top:2px">${s.v.slice(0,60)}...</div>
           </div>
           <span style="color:${grp.c};font-size:16px">›</span>
         </div>`).join("")}
@@ -386,30 +576,22 @@ function renderSupps(){
   }
 }
 
-async function openSupp(id){
+function openSupp(id){
   currentSupp=SUPPLEMENTS.find(s=>s.id===id);
-  aiText=null;aiLoading=true;
   renderPanel();
   document.getElementById("overlay").style.display="flex";
-  try{
-    const res=await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:800,
-        system:"Eres nutricionista deportivo experto. Responde en español. Usa 4 secciones: 🔬 MECANISMO, 📊 EVIDENCIA, ⚡ PARA QUIÉN, 💊 DOSIS. Máximo 2-3 oraciones por sección. Sin markdown.",
-        messages:[{role:"user",content:`Análisis científico del suplemento: "${currentSupp.n}" (AIS Grupo ${currentSupp.g}).`}]})
-    });
-    const data=await res.json();
-    aiText=data.content?.map(b=>b.text||"").join("")||"Sin respuesta.";
-  }catch{aiText="Error al conectar con el análisis. Usá la información base disponible.";}
-  aiLoading=false;renderPanel();
 }
 
 function renderPanel(){
   const s=currentSupp;
   const grp=GROUPS[s.g];
-  const aiHtml=aiLoading
-    ?`<div style="display:flex;flex-direction:column;gap:8px">${[70,90,55,80].map(w=>`<div style="height:11px;background:rgba(255,255,255,0.06);border-radius:4px;width:${w}%;animation:shimmer 1.4s infinite"></div>`).join("")}</div>`
-    :aiText?`<div style="font-size:14px;line-height:1.7;color:#bbb">${aiText.split("\n").filter(l=>l.trim()).map(l=>{const h=l.match(/^[🔬📊⚡💊]/);return`<p style="margin:${h?"12px 0 4px":"0 0 6px"};font-weight:${h?"700":"400"};color:${h?grp.c:"#bbb"};font-size:${h?"11px":"14px"};${h?"text-transform:uppercase;letter-spacing:0.05em":""}">${l}</p>`;}).join("")}</div>`:"";
+  const refsHtml=s.refs&&s.refs.length?`<div style="margin-top:14px;border-top:1px solid rgba(255,255,255,0.07);padding-top:12px">
+    <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;font-weight:600">📚 Fuentes científicas</div>
+    <div style="display:flex;flex-direction:column;gap:5px">
+      ${s.refs.map(r=>`<div style="font-size:11px;color:#555;background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.15);border-radius:6px;padding:5px 10px;font-style:italic">${r}</div>`).join("")}
+    </div>
+  </div>`:"";
+
   document.getElementById("panel").innerHTML=`
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
       <div>
@@ -420,22 +602,19 @@ function renderPanel(){
     </div>
     <div style="background:${grp.bg};border:1px solid ${grp.br};border-radius:10px;padding:12px 16px;margin-bottom:12px">
       <div style="font-size:11px;color:${grp.c};text-transform:uppercase;letter-spacing:0.08em;font-weight:700;margin-bottom:4px">Veredicto</div>
-      <div style="font-size:14px">${s.v}</div>
+      <div style="font-size:14px;line-height:1.5">${s.v}</div>
     </div>
     <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:13px">
       <span style="color:#555;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;font-weight:600">Dosis base: </span><span style="color:#ccc">${s.d}</span>
     </div>
-    <div style="margin-bottom:16px">
+    <div style="margin-bottom:4px">
       <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;font-weight:600">Fundamento científico</div>
-      <div style="font-size:14px;line-height:1.65;color:#888">${s.s}</div>
+      <div style="font-size:14px;line-height:1.7;color:#aaa">${s.s}</div>
     </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:14px">
-      <div style="font-size:11px;color:#6366f1;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;font-weight:600">✦ Análisis detallado con IA</div>
-      ${aiHtml}
-    </div>`;
+    ${refsHtml}`;
 }
 
-function closePanel(){document.getElementById("overlay").style.display="none";currentSupp=null;aiText=null;}
+function closePanel(){document.getElementById("overlay").style.display="none";currentSupp=null;}
 </script>
 </body>
 </html>
