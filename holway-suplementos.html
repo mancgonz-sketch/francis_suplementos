@@ -136,21 +136,34 @@ tr:hover td{background:rgba(255,255,255,0.03)}
     <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.07em;color:#6366f1;margin-bottom:4px">Aviso Legal</div>
     <div style="font-size:12px;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1.2rem">Información importante sobre esta aplicación</div>
     <div style="font-size:13px;line-height:1.7;color:#888">
-      <p style="margin-bottom:12px">Esta aplicación es una herramienta de consulta informativa desarrollada con fines educativos. El contenido presentado es una síntesis de publicaciones científicas de acceso público (PubMed, AIS Framework, COI) y del curso de nutrición deportiva de Francis Holway, organizada para facilitar la consulta de profesionales y personas interesadas en la suplementación deportiva.</p>
+      <p style="margin-bottom:12px">Esta aplicación es una herramienta de consulta informativa desarrollada con fines educativos. El contenido presentado es una síntesis de publicaciones científicas de acceso público, organizada para facilitar la consulta de profesionales y personas interesadas en la suplementación deportiva.</p>
       <p style="margin-bottom:12px">La información aquí contenida <strong style="color:#e2e2ea">no constituye asesoramiento médico, nutricional ni terapéutico</strong>. No reemplaza la consulta con un profesional de la salud habilitado. El autor no se responsabiliza por el uso que cada persona haga de esta información.</p>
-      <p style="margin-bottom:16px">La clasificación ABCD utilizada corresponde al Marco de Suplementos del Instituto Australiano del Deporte (AIS), actualizado periódicamente según la evidencia científica disponible.</p>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px 14px;margin-bottom:16px">
+        <div style="font-size:11px;color:#6366f1;text-transform:uppercase;letter-spacing:0.07em;font-weight:700;margin-bottom:8px">Fuentes científicas utilizadas</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          ${[
+            {n:"PubMed / MEDLINE",d:"Base de datos de literatura biomédica del NIH (EE.UU.)"},
+            {n:"AIS Sports Supplement Framework",d:"Instituto Australiano del Deporte — clasificación ABCD actualizada trimestralmente"},
+            {n:"COI — Comité Olímpico Internacional",d:"Consensos de nutrición deportiva y suplementación"},
+            {n:"ISSN — International Society of Sports Nutrition",d:"Journal of the International Society of Sports Nutrition (JISSN)"},
+            {n:"BJSM — British Journal of Sports Medicine",d:"Revisiones y meta-análisis en medicina deportiva"},
+            {n:"NEJM — New England Journal of Medicine",d:"Ensayos clínicos y revisiones de alta evidencia"},
+            {n:"PNAS — Proceedings of the National Academy of Sciences",d:"Investigación científica de alto impacto"},
+            {n:"Sport Integrity Australia",d:"Regulación antidoping y certificación de suplementos"},
+          ].map(f=>`<div style="font-size:12px"><span style="color:#e2e2ea;font-weight:600">${f.n}</span> — <span style="color:#666">${f.d}</span></div>`).join("")}
+        </div>
+      </div>
       <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:12px;font-size:12px;color:#555">
         <div style="color:#e2e2ea;font-weight:600;margin-bottom:4px">Creado por Gonzalo Manca</div>
         <div>Deportista y entusiasta de la ciencia aplicada al deporte</div>
         <div>Neuquén, Argentina</div>
-        <div style="margin-top:4px"><a href="mailto:gonmanca@yahoo.com.ar" style="color:#6366f1;text-decoration:none">gonmanca@yahoo.com.ar</a></div>
       </div>
     </div>
   </div>
 </div>
 
 <div style="position:fixed;bottom:0;left:0;right:0;background:#0c0c10;border-top:1px solid rgba(255,255,255,0.06);padding:10px 1.2rem;z-index:9;text-align:center">
-  <div style="font-size:11px;color:#444">Creado por <span style="color:#666">Gonzalo Manca</span> · <a href="mailto:gonmanca@yahoo.com.ar" style="color:#555;text-decoration:none">gonmanca@yahoo.com.ar</a> · Neuquén, Argentina</div>
+  <div style="font-size:11px;color:#444">Creado por <span style="color:#666">Gonzalo Manca</span> · Neuquén, Argentina</div>
   <div style="font-size:10px;color:#333;margin-top:2px">Herramienta informativa basada en evidencia científica · No constituye asesoramiento médico</div>
 </div>
 
